@@ -1,3 +1,3 @@
 export const incr = () => ({ type: 'INCREMENT' })
 export const decr = () => ({ type: 'DECREMENT' })
-export const random = (number) => ({ type: 'RANDOM', payload: number })
+export const random = () => ({ type: 'RANDOM', payload: Math.floor(Math.random() * 10) })
