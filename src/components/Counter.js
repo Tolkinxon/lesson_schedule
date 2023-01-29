@@ -3,8 +3,10 @@ import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
 import { bindActionCreators } from 'redux'
 
-function Counter({ count, incr, decr, random }) {
-  return (
+  class Counter extends React.Component{
+    render(){
+      const { count, incr, decr, random } = this.props
+  return(
     <>
       <span>
         <b>count: {count} </b>
@@ -20,7 +22,7 @@ function Counter({ count, incr, decr, random }) {
         random
       </button>
     </>
-  )
+  )}
 }
 
 const mapStateToProps = (state) => {
