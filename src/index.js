@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
     case 'DECREMENT':
       return state - 1
     case 'RANDOM':
-      return state = action.payload 
+      return state * action.payload
 
     default:
       return state
@@ -26,17 +26,24 @@ store.subscribe(() => {
   document.getElementById('counter').textContent = store.getState()
 })
 
+const incr = () => ({ type: 'INCREMENT' })
+const decr = () => ({ type: 'DECREMENT' })
+const random = (number) => ({ type: 'RANDOM', payload: number })
+
+
+
+
 document.getElementById('increment').addEventListener('click', () => {
-  store.dispatch({ type: 'INCREMENT' })
+  store.dispatch(incr())
 })
 
 document.getElementById('decrement').addEventListener('click', () => {
-  store.dispatch({ type: 'DECREMENT' })
+  store.dispatch(decr())
 })
 
 document.getElementById('random').addEventListener('click', () => {
   const randomCalculate = Math.floor(Math.random() * 10)
-  store.dispatch({type: 'RANDOM', payload: randomCalculate})
+  store.dispatch(random(randomCalculate))
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
