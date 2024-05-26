@@ -1,5 +1,6 @@
-const WeekDays = ({ date, day }) => {
+const WeekDays = ({ date, day, idx }) => {
 
+let classOfCurrentDay = ''
 
     switch(day){
         case 0: day = 'Yak'; break;
@@ -11,10 +12,14 @@ const WeekDays = ({ date, day }) => {
         case 6: day = 'Sha'; break;
     }
 
+    if(idx === 3){
+        classOfCurrentDay = 'calendar__current-item'
+    }
+
 
 
     return ( 
-        <li className="calendar__item">
+        <li className={`calendar__item ${classOfCurrentDay}`}>
             <h3 className="calendar__heading">{date}</h3>
             <p className="calendar__text">{ day }</p>
         </li>

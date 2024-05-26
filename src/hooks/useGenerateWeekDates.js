@@ -1,9 +1,4 @@
-const useGenerateWeekDates = ( 
-year = new Date().getFullYear(), 
-month = (new Date().getMonth() + 1), 
-date = new Date().getDate(),
-) => {
-
+const useGenerateWeekDates = ( year, month, date ) => {
     function weekDates (year, month, date, staticDate,) {
 
             if(date < 7){
