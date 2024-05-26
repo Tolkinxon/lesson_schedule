@@ -11,7 +11,7 @@ const Main = () => {
     console.log(slisedDates, slisedDays);
     
     const elements = slisedDates.map((item, idx) => {
-       return <WeekDays key={item} date={item} day={slisedDays[idx]}/>
+       return <WeekDays key={ item } date={ item } day={ slisedDays[idx] } idx={ idx }/>
     })
     
 
@@ -35,13 +35,13 @@ const Main = () => {
 
         <section className='calendar'>
             <div className="container calendar__container">
-                 <img className='calendar__prev-svg' src={calendarNext} alt="prev day svg" width={30} height={30}/>
+                 {/* <img className='calendar__prev-svg' src={calendarNext} alt="prev day svg" width={30} height={30}/> */}
 
                 <ul className='calendar__list'>
                     { elements }
                 </ul>
 
-                <img className='calendar__next-svg' src={calendarNext} alt="next day svg" width={30} height={30}/>
+                <img className='calendar__next-svg' src={calendarNext} alt="next day svg"/>
             </div>
         </section>
      
