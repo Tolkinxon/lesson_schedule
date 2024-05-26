@@ -1,0 +1,37 @@
+.header {
+    margin-top: 25px;
+    margin-bottom: 28px;
+
+    &__container, &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+    }
+
+    &__wrapper {
+        max-width: 210px;
+        width: 100%;
+    }
+
+    &__img {
+        width: 58px;
+        height: 58px;
+        margin-right: 16px;
+    }
+
+    &__heading {
+        font-family: 'Montserrat';
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 29.26px;
+        text-align: left;
+        color: #1E293B;
+    }
+
+    &__clock {
+        width: 40px;
+        height: 40px;
+    }
+
+}
