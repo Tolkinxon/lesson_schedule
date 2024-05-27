@@ -1,0 +1,21 @@
+.add-schedule-header {
+    padding-top: 51px;
+    padding-bottom: 46px;
+
+    background-image: url('./../assets/bg-for-add-schedule.svg');
+    background-repeat: no-repeat;
+    background-position: calc(50% + 50px) 0px;
+    
+    
+    // &__container {
+    // }
+    
+    &__heading {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 29.26px;
+        text-align: left;
+        color: #1E293B;
+    }
+}

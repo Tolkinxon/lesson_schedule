@@ -1,0 +1,44 @@
+.inputs {
+    margin-bottom: 75px;
+    
+    &__container {
+        width: 100%;
+    }
+    
+    &__label {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19.5px;
+        text-align: left;
+        color: #1E293B; 
+        margin-bottom: 20px;  
+    }
+    
+    &__label-extra{
+        color: rgba(30, 41, 59, 0.5); 
+    }
+    
+    &__input {
+        width: 100%;
+        height: 40px;
+        margin-top: 10px;
+        border-radius: 10px;
+        background-color: #F1F5F9;
+        border: none;
+        outline: none;
+    }
+    
+    &__next-lesson {
+        font-family: 'Montserrat',sans-serif;
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 700;
+        line-height: 14.63px;
+        text-align: left;
+        color: #7752FE;
+        
+    }
+}

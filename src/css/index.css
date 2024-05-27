@@ -678,10 +678,34 @@ h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 5px;
 }
 
+.add-schedule-header {
+  padding-top: 51px;
+  padding-bottom: 46px;
+  background-image: url("./../assets/bg-for-add-schedule.svg");
+  background-repeat: no-repeat;
+  background-position: calc(50% + 50px) 0px;
+}
+.add-schedule-header__heading {
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29.26px;
+  text-align: left;
+  color: #1E293B;
+}
+
+.radio-btns {
+  margin-bottom: 43px;
+}
 .radio-btns__container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 12px;
+}
+.radio-btns .checkbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 .radio-btns__label {
   font-family: "Montserrat", sans-serif;
@@ -696,6 +720,7 @@ h1, h2, h3, h4, h5, h6, p {
   color: #1E293B;
   background-color: #F1F5F9;
   gap: 5px;
+  cursor: pointer;
 }
 .radio-btns__input:checked + .radio-btns__custom {
   background-color: #7752FE;
@@ -705,4 +730,66 @@ h1, h2, h3, h4, h5, h6, p {
   height: 13px;
   border-radius: 50%;
   border: 1px solid #7752FE;
+}
+
+.inputs {
+  margin-bottom: 75px;
+}
+.inputs__container {
+  width: 100%;
+}
+.inputs__label {
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.5px;
+  text-align: left;
+  color: #1E293B;
+  margin-bottom: 20px;
+}
+.inputs__label-extra {
+  color: rgba(30, 41, 59, 0.5);
+}
+.inputs__input {
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: #F1F5F9;
+  border: none;
+  outline: none;
+}
+.inputs__next-lesson {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 14.63px;
+  text-align: left;
+  color: #7752FE;
+}
+
+.saving {
+  margin-bottom: 25px;
+}
+.saving__button {
+  width: 100%;
+  height: 45px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.94px;
+  text-align: left;
+  color: #fff;
+  background: rgb(255, 110, 145);
+  background: linear-gradient(90deg, rgb(255, 110, 145) 35%, rgb(222, 73, 110) 100%);
+  border-radius: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }/*# sourceMappingURL=index.css.map */
