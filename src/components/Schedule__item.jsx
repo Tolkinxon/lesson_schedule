@@ -1,32 +1,35 @@
+import { useState } from "react";
 
 const oddOrEventElements = ({ item }) => {
 
    const element = item.map(element => {
-            const { timeLesson, subjectName, teacher, numberRoom, subjectType } = element
-            let color = ''
-            return (
+        const { subjectName, teacher, numberRoom, subjectType, oddOrEven } = element
+
+        let color = ''
+        return (
            
-                    <div className="schedule__item-body odd" style={{backgroundColor: color}}>
-                        <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
+            <div className={`schedule__item-body odd-or-even ${oddOrEven}`} style={{backgroundColor: color}}>
+                <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
 
-                        <p className="schedule__item-teacher">{ teacher }</p>
+                <p className="schedule__item-teacher">{ teacher }</p>
 
-                        <p className="schedule__item-room">{ `${ subjectType } ${ numberRoom }-xona` }</p>
-                    </div>
-     
+                <p className="schedule__item-room">
+                    { `${ subjectType } ${ numberRoom }-xona` }
+                </p>
+            </div>
             )
     });
 
     return ( 
-        <li className="schedule__item">
+        <div className="schedule__item-body-wrappper">
             {element}
-        </li>
+        </div>
     );
 }
 
 const onlyObjects = ({ item }) => {
 
-    const { timeLesson, subjectName, teacher, numberRoom, subjectType } = item
+    const { subjectName, teacher, numberRoom, subjectType } = item
 
     let color = ''
     // switch(idx) {
@@ -36,24 +39,14 @@ const onlyObjects = ({ item }) => {
     //     default: console.log('something went wrong');
     // }
 
-
     return ( 
-            <li className="schedule__item">
-                <div className="schedule__item-header">
-                    <span className="schedule__item-time" >{ timeLesson }</span>
-                    <span className="schedule__item-line" ></span>
-                </div>
+            <div className="schedule__item-body" style={{backgroundColor: color}}>
+                <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
 
-                <div>
-                    <div className="schedule__item-body" style={{backgroundColor: color}}>
-                        <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
+                <p className="schedule__item-teacher">{ teacher }</p>
 
-                        <p className="schedule__item-teacher">{ teacher }</p>
-
-                        <p className="schedule__item-room">{ `${ subjectType } ${ numberRoom }-xona` }</p>
-                    </div>
-                </div>
-            </li>
+                <p className="schedule__item-room">{ `${ subjectType } ${ numberRoom }-xona` }</p>
+            </div>
     );
 }
  
@@ -61,14 +54,34 @@ const onlyObjects = ({ item }) => {
 
 const Schedule__item = ({ item }) => {
 
-    console.log(item.id);
-
     if(item.id == undefined){
-        return oddOrEventElements({ item })
+        const { timeLesson } = item[0]
+        return(
+            <li className="schedule__item">
+                <div className="schedule__item-header">
+                    <span className="schedule__item-time" >{ timeLesson }</span>
+                    <span className="schedule__item-line" ></span>
+                </div>
+                    {
+                        oddOrEventElements({ item })
+                    }
+            </li>
+        ) 
     }
 
     else {
-        return onlyObjects({ item })
+        const { timeLesson } = item
+        return (
+            <li className="schedule__item">
+                <div className="schedule__item-header">
+                    <span className="schedule__item-time" >{ timeLesson }</span>
+                    <span className="schedule__item-line" ></span>
+                </div>
+                    {
+                        onlyObjects({ item })
+                    }
+            </li>
+        )
     }
 }
  

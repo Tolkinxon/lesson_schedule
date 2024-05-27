@@ -44,6 +44,11 @@
             width: 100%;
             border-top: 1.5px dashed #94A3B8;
         }
+
+        &__item-body-wrappper {
+            position: relative;
+            height: 155px;
+        }
         
         &__item-body {
             position: relative;
@@ -94,21 +99,44 @@
             border-radius: 6px;
         }
 
-        .odd {
+
+        .odd-or-even {
             max-width: 162px;
             width: 100%;
             height: 155px;
             align-items: center;
+
+            h3 {
+                margin-bottom: 23px;
+            }
          
             h3, p {
+                width: 100%;
                 text-align: center;
             }
             .schedule__item-room {
+                width: 70%;
+                text-wrap: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden; 
                 right: 50%;
                 transform: translateX(50%);
-                bottom: 0px;
+                bottom: 15px;
             }
-
         }
+
+        .odd, .even {
+            position: absolute;
+            top: 0px;
+        }
+
+        .odd {
+            left: 0px;
+        }
+
+        .even {
+            right: 0px;
+        }
+    
     
 }
