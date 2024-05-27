@@ -652,6 +652,7 @@ h1, h2, h3, h4, h5, h6, p {
   align-items: center;
   border: 1px solid #7752FE;
   border-radius: 14px;
+  margin-bottom: 25px;
 }
 .schedule__add-new-schedule-img {
   margin-right: 5px;
@@ -675,4 +676,33 @@ h1, h2, h3, h4, h5, h6, p {
 .schedule .half-schedule .schedule__add-new-schedule-img {
   margin-right: 0px;
   margin-bottom: 5px;
+}
+
+.radio-btns__container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.radio-btns__label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14.63px;
+  text-align: left;
+  border-radius: 10px;
+  padding: 8px 10px 8px 10px;
+  display: flex;
+  align-items: center;
+  color: #1E293B;
+  background-color: #F1F5F9;
+  gap: 5px;
+}
+.radio-btns__input:checked + .radio-btns__custom {
+  background-color: #7752FE;
+}
+.radio-btns__custom {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid #7752FE;
 }/*# sourceMappingURL=index.css.map */

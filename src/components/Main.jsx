@@ -52,7 +52,6 @@ const Main = () => {
     }, [])
 
 
-
     const next = () => {
         setChangibleDay(slisedDates[4])
         if(slisedDates[4] === 1){
@@ -74,20 +73,20 @@ const Main = () => {
 
     return ( 
      <>
-        <section className="header">
+        <header className="header">
             <h1 className="visually-hidden">lesson schedule for facilitate find room and to save your time</h1>
             <div className="container header__container">
-               <div className='header__wrapper'>
+            <div className='header__wrapper'>
                     <img className='header__img' src={headerImg} alt="heder image for customer" width={58} height={58}/>
 
                     <h2 className="header__heading">
-                        Xayrli kun, To'lqin
+                            Xayrli kun, To'lqin
                     </h2>
-               </div>
+            </div>
 
                 <img className='header__clock' src={headerClock} alt="header clock icon for configure time" />
-            </div>
-        </section>
+                </div>
+        </header>
 
         <section className='calendar'>
             <div className="container calendar__container">
