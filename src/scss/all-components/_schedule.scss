@@ -13,8 +13,9 @@
             margin-bottom: 20px;
         }
         
-        // &__list {
-        // }
+        &__list {
+            margin-bottom: 55px;
+        }
         
         &__item {
             margin-bottom: 20px;
@@ -58,7 +59,7 @@
             width: 100%;
             padding: 15px;
             background-color: #de496e;
-            border-radius: 15px;
+            border-radius: 14px;
             height: 108px;
         }
         
@@ -70,7 +71,7 @@
             text-align: left;
             color: #de496e;
             padding: 5px 8px;
-            border-radius: 6px;
+            border-radius: 5px;
             background-color: white;
             margin-bottom: 10px;
         }
@@ -96,7 +97,7 @@
             background-color: #00b327;
             color: white;
             padding: 5px 11px;
-            border-radius: 6px;
+            border-radius: 5px;
         }
 
 
@@ -137,6 +138,29 @@
         .even {
             right: 0px;
         }
+
     
-    
+    &__add-new-schedule{
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #7752FE;
+        border-radius: 14px;
+    }
+
+    &__add-new-schedule-img{
+        margin-right: 5px;
+        width: 30px;
+        height: 30px;
+    }
+
+    &__add-new-schedule-text{
+        font-family: "Montserrat", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 14.63px;
+        text-align: center;
+        color: #7752FE;
+    }
 }

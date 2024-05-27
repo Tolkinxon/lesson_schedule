@@ -536,6 +536,9 @@ h1, h2, h3, h4, h5, h6, p {
   color: #1E293B;
   margin-bottom: 20px;
 }
+.schedule__list {
+  margin-bottom: 55px;
+}
 .schedule__item {
   margin-bottom: 20px;
 }
@@ -573,7 +576,7 @@ h1, h2, h3, h4, h5, h6, p {
   width: 100%;
   padding: 15px;
   background-color: #de496e;
-  border-radius: 15px;
+  border-radius: 14px;
   height: 108px;
 }
 .schedule__item-subject {
@@ -584,7 +587,7 @@ h1, h2, h3, h4, h5, h6, p {
   text-align: left;
   color: #de496e;
   padding: 5px 8px;
-  border-radius: 6px;
+  border-radius: 5px;
   background-color: white;
   margin-bottom: 10px;
 }
@@ -608,7 +611,7 @@ h1, h2, h3, h4, h5, h6, p {
   background-color: #00b327;
   color: white;
   padding: 5px 11px;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 .schedule .odd-or-even {
   max-width: 162px;
@@ -641,4 +644,25 @@ h1, h2, h3, h4, h5, h6, p {
 }
 .schedule .even {
   right: 0px;
+}
+.schedule__add-new-schedule {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #7752FE;
+  border-radius: 14px;
+}
+.schedule__add-new-schedule-img {
+  margin-right: 5px;
+  width: 30px;
+  height: 30px;
+}
+.schedule__add-new-schedule-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14.63px;
+  text-align: center;
+  color: #7752FE;
 }/*# sourceMappingURL=index.css.map */

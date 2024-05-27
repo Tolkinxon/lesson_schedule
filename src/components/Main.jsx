@@ -1,6 +1,7 @@
 import headerImg from './../assets/header-img.png'
 import headerClock from './../assets/header-clock.svg'
 import calendarNext from './../assets/calendar-next.svg'
+import addSchedule from './../assets/add_schedule.svg'
 import WeekDays from './WeekDays'
 import Schedule__item from './Schedule__item'
 import { useGenerateWeekDates } from '../hooks/useGenerateWeekDates';
@@ -70,14 +71,6 @@ const Main = () => {
 
     console.log(data);
 
-
-
-
-
-    
-
-
-
     return ( 
      <>
         <section className="header">
@@ -115,6 +108,12 @@ const Main = () => {
                 <ul className='schedule__list'>
                     { scheduleElements }
                 </ul>
+
+                <div className="schedule__add-new-schedule">
+                    <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
+
+                    <p className="schedule__add-new-schedule-text">Jadval kiritish</p>
+                </div>
             </div>
         </section>
      
