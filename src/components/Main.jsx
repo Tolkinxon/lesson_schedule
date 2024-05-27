@@ -39,7 +39,8 @@ const Main = () => {
 
                 data.forEach((item, idx) => {
                     if(item.oddOrEven != '' && item.oddOrEven !== undefined ){
-                        const newArr = [item]
+                        const findOdOrEven = item.oddOrEven == 'odd' ? 'even': 'odd'
+                        const newArr = [item, findOdOrEven]
                         data.splice(idx, 1)
                         data.splice(idx, 0, newArr)
                     }

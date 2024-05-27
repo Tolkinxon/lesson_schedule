@@ -1,23 +1,42 @@
 import { useState } from "react";
+import addSchedule from './../assets/add_schedule.svg'
 
 const oddOrEventElements = ({ item }) => {
 
-   const element = item.map(element => {
-        const { subjectName, teacher, numberRoom, subjectType, oddOrEven } = element
+   const element = item.map((element, idx) => {
 
-        let color = ''
-        return (
-           
-            <div className={`schedule__item-body odd-or-even ${oddOrEven}`} style={{backgroundColor: color}}>
-                <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
+            const { subjectName, teacher, numberRoom, subjectType, oddOrEven } = element
 
-                <p className="schedule__item-teacher">{ teacher }</p>
+            if(subjectName == undefined){
+                return (
+                    <div className="schedule__add-new-schedule half-schedule">
+                        <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
+        
+                        <p className="schedule__add-new-schedule-text">{ element == 'odd' ?"Toq hafta":'Juft hafta'}</p>
+                     </div>
+                )
+            }
 
-                <p className="schedule__item-room">
-                    { `${ subjectType } ${ numberRoom }-xona` }
-                </p>
-            </div>
+            let color = ''
+            return (
+                <div className={`schedule__item-body odd-or-even ${oddOrEven}`} style={{backgroundColor: color}}>
+                    <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
+    
+                    <p className="schedule__item-teacher">{ teacher }</p>
+    
+                    <p className="schedule__item-room">
+                        { `${ subjectType } ${ numberRoom }-xona` }
+                    </p>
+                </div>
             )
+    
+
+        
+        
+
+   
+  
+
     });
 
     return ( 
