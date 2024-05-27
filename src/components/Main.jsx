@@ -2,16 +2,54 @@ import headerImg from './../assets/header-img.png'
 import headerClock from './../assets/header-clock.svg'
 import calendarNext from './../assets/calendar-next.svg'
 import WeekDays from './WeekDays'
+import Schedule__item from './Schedule__item'
 import { useGenerateWeekDates } from '../hooks/useGenerateWeekDates';
-import { useState } from 'react'
+import { useHttp }  from '../hooks/useHttp';
+import { useState, useEffect } from 'react'
+
 
 const Main = () => {
+
+    const { request } = useHttp()
 
     const [changibleDay, setChangibleDay] = useState(new Date().getDate())
     const [changibleMoth, setChangibleMonth] = useState(new Date().getMonth() + 1)
     const [changibleYear, setChangibleYear] = useState(new Date().getFullYear())
+    const [data, setData] = useState([])
 
     const { slisedDates, slisedDays } = useGenerateWeekDates(changibleYear, changibleMoth, changibleDay)
+
+
+    useEffect(() => {
+        request('http://localhost:3001/schedule')
+            .then(data => {
+                setData(data)
+
+                data.sort((a, b) => a.timeLesson.slice(0, 2) - b.timeLesson.slice(0, 2))
+
+                data.forEach((item, idx) => {
+                    if(data[idx].timeLesson == data[idx + 1].timeLesson){
+                        const newArr = [item, data[idx + 1]]
+                        data.splice(idx, 1)
+                        data.splice(idx, 1)
+                        data.splice(idx, 0, newArr)
+                    }
+                })
+
+                data.forEach((item, idx) => {
+                    if(item.oddOrEven != '' && item.oddOrEven !== undefined ){
+                        const newArr = [item]
+                        data.splice(idx, 1)
+                        data.splice(idx, 0, newArr)
+                    }
+                })
+
+
+            })
+            .catch((e) => console.log(e))
+    }, [])
+
+
 
     const next = () => {
         setChangibleDay(slisedDates[4])
@@ -20,10 +58,24 @@ const Main = () => {
         }
     }
     
-    const elements = slisedDates.map((item, idx) => {
+
+    const calendarElements = slisedDates.map((item, idx) => {
        return <WeekDays key={ item } date={ item } day={ slisedDays[idx] } idx={ idx }/>
     })
+
+
+    const scheduleElements = data.map((item, idx) => {
+        return <Schedule__item key={idx} item={ item }/>
+    })
+
+    console.log(data);
+
+
+
+
+
     
+
 
 
     return ( 
@@ -48,7 +100,7 @@ const Main = () => {
                  {/* <img className='calendar__prev-svg' src={calendarNext} alt="prev day svg"/> */}
 
                 <ul className='calendar__list'>
-                    { elements }
+                    { calendarElements }
                 </ul>
 
                 <img className='calendar__next-svg' src={calendarNext} alt="next day svg" 
@@ -61,7 +113,7 @@ const Main = () => {
                 <h2 className='schedule__heading'>Bugungi jadval</h2>
 
                 <ul className='schedule__list'>
-
+                    { scheduleElements }
                 </ul>
             </div>
         </section>

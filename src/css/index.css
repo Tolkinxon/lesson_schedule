@@ -525,4 +525,98 @@ h1, h2, h3, h4, h5, h6, p {
   font-weight: 500;
   text-align: center;
   color: #DE496E;
+}
+
+.schedule__heading {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.5px;
+  text-align: left;
+  color: #1E293B;
+  margin-bottom: 20px;
+}
+.schedule__item {
+  margin-bottom: 20px;
+}
+.schedule__item-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.schedule__item-time {
+  max-width: 95px;
+  width: 100%;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17.07px;
+  text-align: left;
+  color: #94A3B8;
+}
+.schedule__item-line {
+  display: inline-block;
+  width: 100%;
+  border-top: 1.5px dashed #94A3B8;
+}
+.schedule__item-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  padding: 15px;
+  background-color: #de496e;
+  border-radius: 15px;
+  height: 108px;
+}
+.schedule__item-subject {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.94px;
+  text-align: left;
+  color: #de496e;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+.schedule__item-teacher {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14.63px;
+  text-align: left;
+  color: white;
+}
+.schedule__item-room {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14.63px;
+  text-align: right;
+  background-color: #00b327;
+  color: white;
+  padding: 5px 11px;
+  border-radius: 6px;
+}
+.schedule .odd {
+  max-width: 162px;
+  width: 100%;
+  height: 155px;
+  align-items: center;
+}
+.schedule .odd h3, .schedule .odd p {
+  text-align: center;
+}
+.schedule .odd .schedule__item-room {
+  right: 50%;
+  transform: translateX(50%);
+  bottom: 0px;
 }/*# sourceMappingURL=index.css.map */
