@@ -1,8 +1,6 @@
-import { useContext, useState } from "react";
-import { MyContext } from "../App";
 import addSchedule from './../assets/add_schedule.svg'
 
-const oddOrEventElements = ({ item }) => {
+const OddOrEventElements = ({  item  }) => {
 
    const element = item.map((element, idx) => {
 
@@ -10,7 +8,7 @@ const oddOrEventElements = ({ item }) => {
 
             if(subjectName == undefined){
                 return (
-                    <div className="schedule__add-new-schedule half-schedule"  key={idx} >
+                    <div className="schedule__add-new-schedule half-schedule"  key={idx}>
                         <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
         
                         <p className="schedule__add-new-schedule-text">{ element == 'odd' ?"Toq hafta":'Juft hafta'}</p>
@@ -39,7 +37,7 @@ const oddOrEventElements = ({ item }) => {
     );
 }
 
-const onlyObjects = ({ item }) => {
+const OnlyObjects = ({ item }) => {
 
     const {id, subjectName, teacher, numberRoom, subjectType } = item
 
@@ -47,7 +45,7 @@ const onlyObjects = ({ item }) => {
 
 
     return ( 
-            <div className="schedule__item-body" id={id} style={{backgroundColor: color}}>
+            <div className="schedule__item-body" id={id} style={{backgroundColor: color}} >
                 <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
 
                 <p className="schedule__item-teacher">{ teacher }</p>
@@ -69,9 +67,7 @@ const Schedule__item = ({ item }) => {
                     <span className="schedule__item-time" >{ timeLesson }</span>
                     <span className="schedule__item-line" ></span>
                 </div>
-                    {
-                        oddOrEventElements({ item })
-                    }
+                <OddOrEventElements item={ item } />
             </li>
         ) 
     }
@@ -84,9 +80,7 @@ const Schedule__item = ({ item }) => {
                     <span className="schedule__item-time" >{ timeLesson }</span>
                     <span className="schedule__item-line" ></span>
                 </div>
-                    {
-                        onlyObjects({ item })
-                    }
+                <OnlyObjects item={ item } />
             </li>
         )
     }

@@ -1,20 +1,10 @@
-import { useContext, useReducer } from "react";
-import { reducer } from './../reducer/reducer'
-import { MyContext } from "../App"; 
-
+import { useSelector } from 'react-redux'
 
 const AddSchedule = () => {
 
+    const add = useSelector(state => state.add)
 
-
-    // const [newAdd, dispatch] = useReducer(reducer, {add: add})
-
-    // console.log(data);
-
-
-
-
-
+    console.log(add);
 
     return ( 
        <>
@@ -31,7 +21,7 @@ const AddSchedule = () => {
 
             <section className="radio-btns">
                 <div className="container radio-btns__container">
-                    <label className="radio-btns__label"  htmlFor="first">
+                    <label className="radio-btns__label"  htmlFor="first" >
                         <input className="radio-btns__input visually-hidden" type="radio" id="first" name='subject-type' />
                        
                         <div className="radio-btns__custom"></div>
@@ -99,7 +89,6 @@ const AddSchedule = () => {
                     Saqlash
                 </button>
             </footer>
-
       </>
 
      );

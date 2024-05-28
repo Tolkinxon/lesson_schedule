@@ -6,14 +6,19 @@ import WeekDays from './WeekDays'
 import Schedule__item from './Schedule__item'
 import { useGenerateWeekDates } from '../hooks/useGenerateWeekDates';
 import { useHttp }  from '../hooks/useHttp';
-import { useState, useEffect, useContext } from 'react'
-import { MyContext } from '../App'
+import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 
 
 const Main = () => {
 
+    const add = useSelector(state => state.add)
+    const dispatch = useDispatch()
+
+
+
     const { request } = useHttp()
-    const { setStaticData } = useContext(MyContext)
 
     const [changibleDay, setChangibleDay] = useState(new Date().getDate())
     const [changibleMoth, setChangibleMonth] = useState(new Date().getMonth() + 1)
@@ -53,9 +58,6 @@ const Main = () => {
             .catch((e) => console.log(e))
     }, [])
 
-    const  showEvent = (e) => {
-        console.log(e.currnetTarget.id);
-    }
 
 
     const next = () => {
@@ -106,7 +108,7 @@ const Main = () => {
             </div>
         </section>
 
-        <section className='schedule' onClick={(e) => showEvent(e)}>
+        <section className='schedule'>
             <div className="container schedule__container">
                 <h2 className='schedule__heading'>Bugungi jadval</h2>
 
@@ -114,14 +116,15 @@ const Main = () => {
                     { scheduleElements }
                 </ul>
 
-                <div className="schedule__add-new-schedule">
-                    <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
+                <Link to="/add-schedule">
+                    <div className="schedule__add-new-schedule" onClick={() => dispatch({type: 'ADD'})}>
+                        <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
 
-                    <p className="schedule__add-new-schedule-text">Jadval kiritish</p>
-                </div>
+                        <p className="schedule__add-new-schedule-text">Jadval kiritish</p>
+                    </div>
+                </Link>
             </div>
         </section>
-     
      </>
      );
 }

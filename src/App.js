@@ -2,22 +2,21 @@ import './css/index.css'
 import Main from "./components/Main"
 import AddSchedule from './components/AddSchedule'
 import { Route, Routes } from 'react-router-dom'
-import { createContext, useState } from 'react'
+import { createStore } from 'redux'
+import { reducer } from './redux/reducer'
+import { Provider } from 'react-redux'
 
-export const MyContext = createContext()
-
+const store = createStore(reducer)
 
 function App() {
-  const [changibleData, setChangibleDataData] = useState([])
-
 
   return (
-    <MyContext.Provider value={ { changibleData, setChangibleDataData } } secondOne>
-      <Routes>
-        <Route path='/' element={ <Main /> }/>
-        <Route path='/add-schedule' element={ <AddSchedule /> }/>
-      </Routes>
-    </MyContext.Provider>
+    <Provider store={store}>
+        <Routes>
+            <Route path='/' element={ <Main /> }/>
+            <Route path='/add-schedule' element={ <AddSchedule /> }/>
+        </Routes>
+    </Provider>
   )
 }
 
