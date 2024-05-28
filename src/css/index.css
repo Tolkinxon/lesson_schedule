@@ -760,6 +760,7 @@ h1, h2, h3, h4, h5, h6, p {
   background-color: #F1F5F9;
   border: none;
   outline: none;
+  text-indent: 10px;
 }
 .inputs__next-lesson {
   font-family: "Montserrat", sans-serif;
