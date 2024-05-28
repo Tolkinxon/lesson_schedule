@@ -1,4 +1,13 @@
+import { useContext } from "react";
+import { MyContext } from "../App"; 
+
+
 const AddSchedule = () => {
+
+    const { secondOn }  = useContext(MyContext)
+
+    console.log(secondOn);
+
     return ( 
        <>
             <header className="add-schedule-header">
