@@ -1,12 +1,20 @@
-import { useContext } from "react";
+import { useContext, useReducer } from "react";
+import { reducer } from './../reducer/reducer'
 import { MyContext } from "../App"; 
 
 
 const AddSchedule = () => {
 
-    const { secondOn }  = useContext(MyContext)
 
-    console.log(secondOn);
+
+    // const [newAdd, dispatch] = useReducer(reducer, {add: add})
+
+    // console.log(data);
+
+
+
+
+
 
     return ( 
        <>

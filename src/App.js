@@ -8,13 +8,11 @@ export const MyContext = createContext()
 
 
 function App() {
-
-  const [num, setNum] = useState(700)
-  const [secondOne, setSecondOne] = useState('hello world')
+  const [changibleData, setChangibleDataData] = useState([])
 
 
   return (
-    <MyContext.Provider value={ {num, secondOne} } secondOne>
+    <MyContext.Provider value={ { changibleData, setChangibleDataData } } secondOne>
       <Routes>
         <Route path='/' element={ <Main /> }/>
         <Route path='/add-schedule' element={ <AddSchedule /> }/>

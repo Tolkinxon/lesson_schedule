@@ -6,12 +6,14 @@ import WeekDays from './WeekDays'
 import Schedule__item from './Schedule__item'
 import { useGenerateWeekDates } from '../hooks/useGenerateWeekDates';
 import { useHttp }  from '../hooks/useHttp';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { MyContext } from '../App'
 
 
 const Main = () => {
 
     const { request } = useHttp()
+    const { setStaticData } = useContext(MyContext)
 
     const [changibleDay, setChangibleDay] = useState(new Date().getDate())
     const [changibleMoth, setChangibleMonth] = useState(new Date().getMonth() + 1)
@@ -51,6 +53,10 @@ const Main = () => {
             .catch((e) => console.log(e))
     }, [])
 
+    const  showEvent = (e) => {
+        console.log(e.currnetTarget.id);
+    }
+
 
     const next = () => {
         setChangibleDay(slisedDates[4])
@@ -69,7 +75,6 @@ const Main = () => {
         return <Schedule__item key={idx} item={ item }/>
     })
 
-    console.log(data);
 
     return ( 
      <>
@@ -101,7 +106,7 @@ const Main = () => {
             </div>
         </section>
 
-        <section className='schedule'>
+        <section className='schedule' onClick={(e) => showEvent(e)}>
             <div className="container schedule__container">
                 <h2 className='schedule__heading'>Bugungi jadval</h2>
 

@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { MyContext } from "../App";
 import addSchedule from './../assets/add_schedule.svg'
 
 const oddOrEventElements = ({ item }) => {
 
    const element = item.map((element, idx) => {
 
-            const { subjectName, teacher, numberRoom, subjectType, oddOrEven } = element
+            const {id, subjectName, teacher, numberRoom, subjectType, oddOrEven } = element
 
             if(subjectName == undefined){
                 return (
-                    <div className="schedule__add-new-schedule half-schedule">
+                    <div className="schedule__add-new-schedule half-schedule"  key={idx} >
                         <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
         
                         <p className="schedule__add-new-schedule-text">{ element == 'odd' ?"Toq hafta":'Juft hafta'}</p>
@@ -19,7 +20,7 @@ const oddOrEventElements = ({ item }) => {
 
             let color = ''
             return (
-                <div className={`schedule__item-body odd-or-even ${oddOrEven}`} style={{backgroundColor: color}}>
+                <div className={`schedule__item-body odd-or-even ${oddOrEven}`} id={id} style={{backgroundColor: color}} key={idx} >
                     <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
     
                     <p className="schedule__item-teacher">{ teacher }</p>
@@ -29,14 +30,6 @@ const oddOrEventElements = ({ item }) => {
                     </p>
                 </div>
             )
-    
-
-        
-        
-
-   
-  
-
     });
 
     return ( 
@@ -48,18 +41,13 @@ const oddOrEventElements = ({ item }) => {
 
 const onlyObjects = ({ item }) => {
 
-    const { subjectName, teacher, numberRoom, subjectType } = item
+    const {id, subjectName, teacher, numberRoom, subjectType } = item
 
     let color = ''
-    // switch(idx) {
-    //     case 0: color = '#DE496E'; break;
-    //     case 1: color = '#8572FF'; break;
-    //     case 2: color = '#2E97A7'; break;
-    //     default: console.log('something went wrong');
-    // }
+
 
     return ( 
-            <div className="schedule__item-body" style={{backgroundColor: color}}>
+            <div className="schedule__item-body" id={id} style={{backgroundColor: color}}>
                 <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
 
                 <p className="schedule__item-teacher">{ teacher }</p>
