@@ -1,5 +1,6 @@
 const initialState = {
-    add: 400
+    add: 400,
+    staticData: []
 }
 
 
@@ -9,6 +10,12 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 add: state.add + 1
+            }
+        
+        case "DATA":
+            return {
+                ...state,
+                staticData: action.payload
             }
         default: 
             return {

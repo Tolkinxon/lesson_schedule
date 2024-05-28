@@ -2,9 +2,9 @@ import { useSelector } from 'react-redux'
 
 const AddSchedule = () => {
 
-    const add = useSelector(state => state.add)
+    const staticData = useSelector(state => state.staticData)
 
-    console.log(add);
+    console.log(staticData);
 
     return ( 
        <>

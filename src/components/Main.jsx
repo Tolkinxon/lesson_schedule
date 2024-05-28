@@ -7,6 +7,7 @@ import Schedule__item from './Schedule__item'
 import { useGenerateWeekDates } from '../hooks/useGenerateWeekDates';
 import { useHttp }  from '../hooks/useHttp';
 import { useSelector, useDispatch } from 'react-redux'
+import { fetchData } from '../redux/actions'
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 
@@ -15,7 +16,6 @@ const Main = () => {
 
     const add = useSelector(state => state.add)
     const dispatch = useDispatch()
-
 
 
     const { request } = useHttp()
@@ -31,34 +31,36 @@ const Main = () => {
     useEffect(() => {
         request('http://localhost:3001/schedule')
             .then(data => {
+                const newData = [...data]
+                dispatch(fetchData(newData))
                 setData(data)
-
-                data.sort((a, b) => a.timeLesson.slice(0, 2) - b.timeLesson.slice(0, 2))
-
-                data.forEach((item, idx) => {
-                    if(data[idx].timeLesson == data[idx + 1].timeLesson){
-                        const newArr = [item, data[idx + 1]]
-                        data.splice(idx, 1)
-                        data.splice(idx, 1)
-                        data.splice(idx, 0, newArr)
-                    }
-                })
-
-                data.forEach((item, idx) => {
-                    if(item.oddOrEven != '' && item.oddOrEven !== undefined ){
-                        const findOdOrEven = item.oddOrEven == 'odd' ? 'even': 'odd'
-                        const newArr = [item, findOdOrEven]
-                        data.splice(idx, 1)
-                        data.splice(idx, 0, newArr)
-                    }
-                })
-
-
+                preperingToRender(data)
             })
             .catch((e) => console.log(e))
     }, [])
 
 
+    function preperingToRender (data) {
+        data.sort((a, b) => a.timeLesson.slice(0, 2) - b.timeLesson.slice(0, 2))
+
+        data.forEach((item, idx) => {
+            if(data[idx].timeLesson == data[idx + 1].timeLesson){
+                const newArr = [item, data[idx + 1]]
+                data.splice(idx, 1)
+                data.splice(idx, 1)
+                data.splice(idx, 0, newArr)
+            }
+        })
+
+        data.forEach((item, idx) => {
+            if(item.oddOrEven != '' && item.oddOrEven !== undefined ){
+                const findOdOrEven = item.oddOrEven == 'odd' ? 'even': 'odd'
+                const newArr = [item, findOdOrEven]
+                data.splice(idx, 1)
+                data.splice(idx, 0, newArr)
+            }
+        })
+    }
 
     const next = () => {
         setChangibleDay(slisedDates[4])
