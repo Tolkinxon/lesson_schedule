@@ -1,27 +1,29 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
 import { useHttp }  from '../hooks/useHttp';
-import { dataAdding } from '../redux/actions';
+import { dataAdding, setFindOddOrEven, setFindTime } from '../redux/actions';
 import { v4 } from 'uuid'
 import { Link } from 'react-router-dom';
 
 const AddSchedule = () => {
+
+    const findTime = useSelector(state => state.findTime)
+    const findOddOrEven = useSelector(state => state.findOddOrEven)
+
+    
+
+    const dispatch = useDispatch()
+
     const [subjectName, setSubjectName] = useState('')
     const [subjectType, setSubjectType] = useState('')
     const [teacher, setTeacher] = useState('')
     const [timeLesson, setTimeLesson] = useState('')
     const [numberRoom, setNumberRoom] = useState('')
-    const [oddOrEven, setOddOrEven] = useState('')
+    const [oddOrEven, setOddOrEven] = useState(findOddOrEven)
     const [isEmpty, setIsEmpty] = useState(false)
 
+
     const { request } = useHttp()
-
-    const lengthData = useSelector(state => state.lengthData)
-    const staticData = useSelector(state => state.staticData)
-    const dispatch = useDispatch()
-
-    console.log(staticData);
-
     useEffect(() => {
         request('http://localhost:3001/lessonsTime')
             .then(data => {
@@ -32,14 +34,20 @@ const AddSchedule = () => {
  
 
     const generateData = () => {
-        const newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLesson[`${lengthData + 1}`] }
+        const newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLesson[`${findTime + 1}`] }
 
         dispatch(dataAdding(newData))
+
+        setIsEmpty(false)
+        setOddOrEven('')
+        setNumberRoom('')
+        setTimeLesson('')
+        setTeacher('')
+        setSubjectName('')
+        setSubjectType('')
+        dispatch(setFindTime(-1))
+        dispatch(setFindOddOrEven(''))
     }
-   
-
-  
-
 
     return ( 
        <>

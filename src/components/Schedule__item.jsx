@@ -1,10 +1,16 @@
 import addSchedule from './../assets/add_schedule.svg'
-import { lengthData } from '../redux/actions'
+import { setFindTime, setFindOddOrEven } from '../redux/actions'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const OddOrEventElements = ({  item, idx  }) => {
 
     const dispatch = useDispatch()
+
+    const finding = (idx, oddOrEven) => {
+        dispatch(setFindTime(idx))
+        dispatch(setFindOddOrEven(oddOrEven))
+    }
 
     const showId = (idx) => {
         console.log(idx);
@@ -18,11 +24,15 @@ const OddOrEventElements = ({  item, idx  }) => {
 
             if(subjectName == undefined){
                 return (
-                    <div className={`schedule__add-new-schedule half-schedule ${element}`}  key={index} onClick={() => dispatch(lengthData(idx + 1))}>
-                        <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
-        
-                        <p className="schedule__add-new-schedule-text">{ element == 'odd' ?"Toq hafta":'Juft hafta'}</p>
-                     </div>
+                 <Link to="/add-schedule">
+                       <div className={`schedule__add-new-schedule half-schedule ${element}`}  key={index} onClick={() => finding(idx, element)}>
+                            <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
+            
+                            <p className="schedule__add-new-schedule-text">
+                                { element == 'odd' ?"Toq hafta":'Juft hafta'}
+                            </p>
+                       </div>
+                 </Link>
                 )
             }
 
@@ -40,11 +50,7 @@ const OddOrEventElements = ({  item, idx  }) => {
             )
     });
 
-    return ( 
-        <div className="schedule__item-body-wrappper">
-            {element}
-        </div>
-    );
+    return element
 }
 
 const OnlyObjects = ({ item, idx }) => {
@@ -55,7 +61,7 @@ const OnlyObjects = ({ item, idx }) => {
 
 
     return ( 
-            <div className="schedule__item-body" style={{backgroundColor: color}} >
+            <div className="schedule__item-body" style={{backgroundColor: color}} key={idx}>
                 <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
 
                 <p className="schedule__item-teacher">{ teacher }</p>
@@ -79,7 +85,9 @@ const Schedule__item = ({ item, idx }) => {
                     <span className="schedule__item-time" >{ timeLesson }</span>
                     <span className="schedule__item-line" ></span>
                 </div>
-                <OddOrEventElements item={ item } idx={ idx }/>
+                <div className="schedule__item-body-wrappper" >
+                    <OddOrEventElements item={ item } idx={ idx }/>
+                </div>
             </li>
         ) 
     }
@@ -92,7 +100,9 @@ const Schedule__item = ({ item, idx }) => {
                     <span className="schedule__item-time" >{ timeLesson }</span>
                     <span className="schedule__item-line" ></span>
                 </div>
-                <OnlyObjects item={ item } />
+                <div className="schedule__item-body-wrappper" >
+                    <OnlyObjects item={ item } />
+                </div>
             </li>
         )
     }

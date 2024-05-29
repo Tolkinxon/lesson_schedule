@@ -1,16 +1,20 @@
 const initialState = {
-    lessonTime: '',
     staticData: [],
-    lengthData: -1
+    findTime: -1,
+    findOddOrEven: ''
 }
-
 
 export const reducer = (state = initialState, action) => {
     switch(action.type){
         case 'FIND_TIME':
             return {
                 ...state,
-                lengthData: action.payload
+                findTime: action.payload
+            }
+        case 'FIND_ODD_OR_EVEN':
+            return {
+                ...state,
+                findOddOrEven: action.payload
             }
         
         case "DATA_FETCHING":

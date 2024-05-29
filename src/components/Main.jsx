@@ -7,7 +7,7 @@ import Schedule__item from './Schedule__item'
 import { useGenerateWeekDates } from '../hooks/useGenerateWeekDates';
 import { useHttp }  from '../hooks/useHttp';
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchData, lengthData } from '../redux/actions'
+import { fetchData, setFindTime } from '../redux/actions'
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 
@@ -67,8 +67,6 @@ const Main = () => {
     setData([...newData])
   }
 
-  console.log(data);
-
 
     const next = () => {
         setChangibleDay(slisedDates[4])
@@ -127,7 +125,7 @@ const Main = () => {
                 </ul>
 
                 <Link to="/add-schedule">
-                    <div className="schedule__add-new-schedule" onClick={() => dispatch(lengthData(data.length))}>
+                    <div className="schedule__add-new-schedule" onClick={() => dispatch(setFindTime(data.length))}>
                         <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
 
                         <p className="schedule__add-new-schedule-text">Jadval kiritish</p>
