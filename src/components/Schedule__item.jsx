@@ -1,21 +1,18 @@
 import addSchedule from './../assets/add_schedule.svg'
-import { setFindTime, setFindOddOrEven } from '../redux/actions'
-import { useDispatch } from 'react-redux'
+import { setFindTime, setFindOddOrEven, setFindId } from '../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const OddOrEventElements = ({  item, idx  }) => {
 
+    const findId = useSelector(state => state.findId)
     const dispatch = useDispatch()
+
 
     const finding = (idx, oddOrEven) => {
         dispatch(setFindTime(idx))
         dispatch(setFindOddOrEven(oddOrEven))
     }
-
-    const showId = (idx) => {
-        console.log(idx);
-    }
-
 
 
    const element = item.map((element, index) => {
@@ -38,15 +35,17 @@ const OddOrEventElements = ({  item, idx  }) => {
 
             let color = ''
             return (
-                <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={index} onClick={() => showId(idx)}>
-                    <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
-    
-                    <p className="schedule__item-teacher">{ teacher }</p>
-    
-                    <p className="schedule__item-room">
-                        { `${ subjectType } ${ numberRoom }-xona` }
-                    </p>
-                </div>
+                <Link to="/add-schedule">
+                    <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={index} onClick={() => dispatch(setFindId(id))}>
+                        <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
+        
+                        <p className="schedule__item-teacher">{ teacher }</p>
+        
+                        <p className="schedule__item-room">
+                            { `${ subjectType } ${ numberRoom }-xona` }
+                        </p>
+                    </div>
+                </Link>
             )
     });
 

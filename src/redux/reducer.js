@@ -1,7 +1,8 @@
 const initialState = {
     staticData: [],
     findTime: -1,
-    findOddOrEven: ''
+    findOddOrEven: '',
+    findId: ''
 }
 
 export const reducer = (state = initialState, action) => {
@@ -15,6 +16,11 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 findOddOrEven: action.payload
+            }
+        case 'FIND_ID':
+            return {
+                ...state,
+                findId: action.payload
             }
         
         case "DATA_FETCHING":

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
 import { useHttp }  from '../hooks/useHttp';
-import { dataAdding, setFindOddOrEven, setFindTime } from '../redux/actions';
+import { dataAdding, setFindOddOrEven, setFindTime, setFindId } from '../redux/actions';
 import { v4 } from 'uuid'
 import { Link } from 'react-router-dom';
 
@@ -9,8 +9,8 @@ const AddSchedule = () => {
 
     const findTime = useSelector(state => state.findTime)
     const findOddOrEven = useSelector(state => state.findOddOrEven)
-
-    
+    const findId= useSelector(state => state.findId)
+    const staticData = useSelector(state => state.staticData)
 
     const dispatch = useDispatch()
 
@@ -18,6 +18,7 @@ const AddSchedule = () => {
     const [subjectType, setSubjectType] = useState('')
     const [teacher, setTeacher] = useState('')
     const [timeLesson, setTimeLesson] = useState('')
+    const [timeLessonObj, setTimeLessonObj] = useState('')
     const [numberRoom, setNumberRoom] = useState('')
     const [oddOrEven, setOddOrEven] = useState(findOddOrEven)
     const [isEmpty, setIsEmpty] = useState(false)
@@ -27,15 +28,36 @@ const AddSchedule = () => {
     useEffect(() => {
         request('http://localhost:3001/lessonsTime')
             .then(data => {
-                setTimeLesson(data)
+                setTimeLessonObj(data)
             })
             .catch((e) => console.log(e))
     }, [])
+
+    useEffect(() => {
+        const findingItem = staticData.find(item => item.id == findId)
+     
+        if (findingItem) {
+            const { subjectName, teacher, numberRoom, subjectType, timeLesson, oddOrEven } = findingItem
+            setSubjectName(subjectName)
+            setTeacher(teacher)
+            setNumberRoom(numberRoom)
+            setSubjectType(subjectType)
+            setOddOrEven(oddOrEven)
+            setIsEmpty(false)
+        }
+    }, [findId])
+
+
+
  
 
-    const generateData = () => {
-        const newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLesson[`${findTime + 1}`] }
+    const editData = () => {
+    }
 
+    const generateData = () => {
+        const newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLessonObj[`${findTime + 1}`]}
+
+      
         dispatch(dataAdding(newData))
 
         setIsEmpty(false)
