@@ -1,14 +1,24 @@
 import addSchedule from './../assets/add_schedule.svg'
+import { lengthData } from '../redux/actions'
+import { useDispatch } from 'react-redux'
 
-const OddOrEventElements = ({  item  }) => {
+const OddOrEventElements = ({  item, idx  }) => {
 
-   const element = item.map((element, idx) => {
+    const dispatch = useDispatch()
+
+    const showId = (idx) => {
+        console.log(idx);
+    }
+
+
+
+   const element = item.map((element, index) => {
 
             const {id, subjectName, teacher, numberRoom, subjectType, oddOrEven } = element
 
             if(subjectName == undefined){
                 return (
-                    <div className={`schedule__add-new-schedule half-schedule ${element}`}  key={idx}>
+                    <div className={`schedule__add-new-schedule half-schedule ${element}`}  key={index} onClick={() => dispatch(lengthData(idx + 1))}>
                         <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
         
                         <p className="schedule__add-new-schedule-text">{ element == 'odd' ?"Toq hafta":'Juft hafta'}</p>
@@ -18,7 +28,7 @@ const OddOrEventElements = ({  item  }) => {
 
             let color = ''
             return (
-                <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={idx} >
+                <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={index} onClick={() => showId(idx)}>
                     <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
     
                     <p className="schedule__item-teacher">{ teacher }</p>
@@ -37,7 +47,7 @@ const OddOrEventElements = ({  item  }) => {
     );
 }
 
-const OnlyObjects = ({ item }) => {
+const OnlyObjects = ({ item, idx }) => {
 
     const { subjectName, teacher, numberRoom, subjectType } = item
 
@@ -59,7 +69,7 @@ const OnlyObjects = ({ item }) => {
  
 
 
-const Schedule__item = ({ item }) => {
+const Schedule__item = ({ item, idx }) => {
 
     if(item.id == undefined){
         const { timeLesson } = item[0]
@@ -69,7 +79,7 @@ const Schedule__item = ({ item }) => {
                     <span className="schedule__item-time" >{ timeLesson }</span>
                     <span className="schedule__item-line" ></span>
                 </div>
-                <OddOrEventElements item={ item } />
+                <OddOrEventElements item={ item } idx={ idx }/>
             </li>
         ) 
     }

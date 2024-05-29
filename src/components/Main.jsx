@@ -84,7 +84,7 @@ const Main = () => {
 
 
     const scheduleElements = data.map((item, idx) => {
-        return <Schedule__item key={idx} item={ item }/>
+        return <Schedule__item key={ idx } item={ item } idx={ idx } />
     })
 
 

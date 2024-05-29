@@ -7,7 +7,7 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
     switch(action.type){
-        case 'LENGTH_DATA':
+        case 'FIND_TIME':
             return {
                 ...state,
                 lengthData: action.payload
