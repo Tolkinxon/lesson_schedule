@@ -17,7 +17,6 @@ const Main = () => {
     const staticData = useSelector(state => state.staticData)
     const dispatch = useDispatch()
 
-
     const { request } = useHttp()
 
     const [changibleDay, setChangibleDay] = useState(new Date().getDate())
@@ -27,9 +26,7 @@ const Main = () => {
 
     const { slisedDates, slisedDays } = useGenerateWeekDates(changibleYear, changibleMoth, changibleDay)
 
-    
     useEffect(() => {
-       
       if(staticData.length < 1) {
         request('http://localhost:3001/schedule')
         .then(data => {
@@ -37,7 +34,6 @@ const Main = () => {
             preparingToRender(data)
         })
         .catch((e) => console.log(e))
-        console.log('didmount');
       }
     }, [])
 
@@ -46,14 +42,13 @@ const Main = () => {
     }, [staticData])
 
     
-  
   const preparingToRender = (staticData) => {
     const newData = [...staticData]
        
     newData.sort((a, b) => a.timeLesson.slice(0, 2) - b.timeLesson.slice(0, 2))
 
     newData.forEach((item, idx) => {
-        if(newData[idx].timeLesson == newData[idx + 1].timeLesson){
+        if(newData[idx].timeLesson == newData[idx + 1]?.timeLesson){
             const newArr = [item, newData[idx + 1]]
             newData.splice(idx, 2)
             newData.splice(idx, 0, newArr)
@@ -72,8 +67,7 @@ const Main = () => {
     setData([...newData])
   }
 
-       
-
+  console.log(data);
 
 
     const next = () => {

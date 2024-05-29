@@ -8,7 +8,7 @@ const OddOrEventElements = ({  item  }) => {
 
             if(subjectName == undefined){
                 return (
-                    <div className="schedule__add-new-schedule half-schedule"  key={idx}>
+                    <div className={`schedule__add-new-schedule half-schedule ${element}`}  key={idx}>
                         <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
         
                         <p className="schedule__add-new-schedule-text">{ element == 'odd' ?"Toq hafta":'Juft hafta'}</p>
