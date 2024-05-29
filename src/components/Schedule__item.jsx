@@ -18,7 +18,7 @@ const OddOrEventElements = ({  item  }) => {
 
             let color = ''
             return (
-                <div className={`schedule__item-body odd-or-even ${oddOrEven}`} id={id} style={{backgroundColor: color}} key={idx} >
+                <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={idx} >
                     <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
     
                     <p className="schedule__item-teacher">{ teacher }</p>
@@ -39,18 +39,20 @@ const OddOrEventElements = ({  item  }) => {
 
 const OnlyObjects = ({ item }) => {
 
-    const {id, subjectName, teacher, numberRoom, subjectType } = item
+    const { subjectName, teacher, numberRoom, subjectType } = item
 
     let color = ''
 
 
     return ( 
-            <div className="schedule__item-body" id={id} style={{backgroundColor: color}} >
+            <div className="schedule__item-body" style={{backgroundColor: color}} >
                 <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
 
                 <p className="schedule__item-teacher">{ teacher }</p>
 
-                <p className="schedule__item-room">{ `${ subjectType } ${ numberRoom }-xona` }</p>
+                <p className="schedule__item-room">
+                    { `${ subjectType } ${ numberRoom }-xona` }
+                </p>
             </div>
     );
 }

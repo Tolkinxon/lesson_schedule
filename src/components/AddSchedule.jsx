@@ -1,6 +1,9 @@
-import { useSelector } from 'react-redux'
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react';
+import { useHttp }  from '../hooks/useHttp';
+import { dataAdding } from '../redux/actions';
 import { v4 } from 'uuid'
+import { Link } from 'react-router-dom';
 
 const AddSchedule = () => {
     const [subjectName, setSubjectName] = useState('')
@@ -11,15 +14,31 @@ const AddSchedule = () => {
     const [oddOrEven, setOddOrEven] = useState('')
     const [isEmpty, setIsEmpty] = useState(false)
 
+    const { request } = useHttp()
+
+    const lengthData = useSelector(state => state.lengthData)
+    const staticData = useSelector(state => state.staticData)
+    const dispatch = useDispatch()
+
+    console.log(staticData);
+
+    useEffect(() => {
+        request('http://localhost:3001/lessonsTime')
+            .then(data => {
+                setTimeLesson(data)
+            })
+            .catch((e) => console.log(e))
+    }, [])
+ 
 
     const generateData = () => {
-        const newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven }
+        const newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLesson[`${lengthData + 1}`] }
 
-        console.log(newData);
+        dispatch(dataAdding(newData))
     }
    
 
-    // const staticData = useSelector(state => state.staticData)
+  
 
 
     return ( 
@@ -101,9 +120,11 @@ const AddSchedule = () => {
             </section>
 
             <footer className="container saving">
-                <button className="saving__button" onClick={generateData}>
-                    Saqlash
-                </button>
+                <Link to='/'>
+                    <button className="saving__button" onClick={() => generateData()}>
+                        Saqlash
+                    </button>
+                </Link>
             </footer>
       </>
 

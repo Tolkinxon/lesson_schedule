@@ -6,15 +6,15 @@ import WeekDays from './WeekDays'
 import Schedule__item from './Schedule__item'
 import { useGenerateWeekDates } from '../hooks/useGenerateWeekDates';
 import { useHttp }  from '../hooks/useHttp';
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchData } from '../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchData, lengthData } from '../redux/actions'
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 
 
 const Main = () => {
 
-    const add = useSelector(state => state.add)
+    const staticData = useSelector(state => state.staticData)
     const dispatch = useDispatch()
 
 
@@ -27,40 +27,54 @@ const Main = () => {
 
     const { slisedDates, slisedDays } = useGenerateWeekDates(changibleYear, changibleMoth, changibleDay)
 
-
+    
     useEffect(() => {
+       
+      if(staticData.length < 1) {
         request('http://localhost:3001/schedule')
-            .then(data => {
-                const newData = [...data]
-                dispatch(fetchData(newData))
-                setData(data)
-                preperingToRender(data)
-            })
-            .catch((e) => console.log(e))
+        .then(data => {
+            dispatch(fetchData(data))
+            preparingToRender(data)
+        })
+        .catch((e) => console.log(e))
+        console.log('didmount');
+      }
     }, [])
 
+    useEffect(() => {
+        preparingToRender(staticData)
+    }, [staticData])
 
-    function preperingToRender (data) {
-        data.sort((a, b) => a.timeLesson.slice(0, 2) - b.timeLesson.slice(0, 2))
+    
+  
+  const preparingToRender = (staticData) => {
+    const newData = [...staticData]
+       
+    newData.sort((a, b) => a.timeLesson.slice(0, 2) - b.timeLesson.slice(0, 2))
 
-        data.forEach((item, idx) => {
-            if(data[idx].timeLesson == data[idx + 1].timeLesson){
-                const newArr = [item, data[idx + 1]]
-                data.splice(idx, 1)
-                data.splice(idx, 1)
-                data.splice(idx, 0, newArr)
-            }
-        })
+    newData.forEach((item, idx) => {
+        if(newData[idx].timeLesson == newData[idx + 1].timeLesson){
+            const newArr = [item, newData[idx + 1]]
+            newData.splice(idx, 2)
+            newData.splice(idx, 0, newArr)
+        }
+    })
 
-        data.forEach((item, idx) => {
-            if(item.oddOrEven != '' && item.oddOrEven !== undefined ){
-                const findOdOrEven = item.oddOrEven == 'odd' ? 'even': 'odd'
-                const newArr = [item, findOdOrEven]
-                data.splice(idx, 1)
-                data.splice(idx, 0, newArr)
-            }
-        })
-    }
+    newData.forEach((item, idx) => {
+        if(item.oddOrEven != '' && item.oddOrEven !== undefined ){
+            const findOdOrEven = item.oddOrEven == 'odd' ? 'even': 'odd'
+            const newArr = [item, findOdOrEven]
+            newData.splice(idx, 1)
+            newData.splice(idx, 0, newArr)
+        }
+    })
+
+    setData([...newData])
+  }
+
+       
+
+
 
     const next = () => {
         setChangibleDay(slisedDates[4])
@@ -119,7 +133,7 @@ const Main = () => {
                 </ul>
 
                 <Link to="/add-schedule">
-                    <div className="schedule__add-new-schedule" onClick={() => dispatch({type: 'ADD'})}>
+                    <div className="schedule__add-new-schedule" onClick={() => dispatch(lengthData(data.length))}>
                         <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
 
                         <p className="schedule__add-new-schedule-text">Jadval kiritish</p>
