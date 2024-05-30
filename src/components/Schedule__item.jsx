@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 
 const OddOrEventElements = ({  item, idx  }) => {
 
-    const findId = useSelector(state => state.findId)
     const dispatch = useDispatch()
 
 
@@ -54,13 +53,17 @@ const OddOrEventElements = ({  item, idx  }) => {
 
 const OnlyObjects = ({ item, idx }) => {
 
-    const { subjectName, teacher, numberRoom, subjectType } = item
+    const dispatch = useDispatch()
+
+
+    const {id, subjectName, teacher, numberRoom, subjectType } = item
 
     let color = ''
 
 
     return ( 
-            <div className="schedule__item-body" style={{backgroundColor: color}} key={idx}>
+        <Link to="/add-schedule">
+            <div className="schedule__item-body" style={{backgroundColor: color}} key={idx} onClick={() => dispatch(setFindId(id))}>
                 <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
 
                 <p className="schedule__item-teacher">{ teacher }</p>
@@ -69,6 +72,7 @@ const OnlyObjects = ({ item, idx }) => {
                     { `${ subjectType } ${ numberRoom }-xona` }
                 </p>
             </div>
+        </Link>
     );
 }
  

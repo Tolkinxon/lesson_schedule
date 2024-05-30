@@ -34,6 +34,11 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 staticData: newArr
             }
+        case "DATA_EDITING":
+            state.staticData[action.payload.idx] = action.payload.data
+            return {
+                ...state,
+            }
         default: 
             return {
                 ...state

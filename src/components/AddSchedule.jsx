@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
 import { useHttp }  from '../hooks/useHttp';
-import { dataAdding, setFindOddOrEven, setFindTime, setFindId } from '../redux/actions';
+import { dataAdding, dataEditing, setFindOddOrEven, setFindTime, setFindId } from '../redux/actions';
 import { v4 } from 'uuid'
 import { Link } from 'react-router-dom';
 
@@ -23,7 +23,6 @@ const AddSchedule = () => {
     const [oddOrEven, setOddOrEven] = useState(findOddOrEven)
     const [isEmpty, setIsEmpty] = useState(false)
 
-
     const { request } = useHttp()
     useEffect(() => {
         request('http://localhost:3001/lessonsTime')
@@ -33,9 +32,10 @@ const AddSchedule = () => {
             .catch((e) => console.log(e))
     }, [])
 
+
+    const findingItem = staticData.find(item => item.id == findId)
+    const findingIdx = staticData.findIndex(item => item.id == findId)
     useEffect(() => {
-        const findingItem = staticData.find(item => item.id == findId)
-     
         if (findingItem) {
             const { subjectName, teacher, numberRoom, subjectType, timeLesson, oddOrEven } = findingItem
             setSubjectName(subjectName)
@@ -52,6 +52,10 @@ const AddSchedule = () => {
  
 
     const editData = () => {
+        const { id, timeLesson}  = findingItem
+        const newData = { id, subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson}
+        dispatch(dataEditing(newData, findingIdx))
+        clearInputs()
     }
 
     const generateData = () => {
@@ -59,7 +63,19 @@ const AddSchedule = () => {
 
       
         dispatch(dataAdding(newData))
+        clearInputs()
+    }
 
+    const runFunctions = () => {
+        if(findId){
+            editData()
+        }
+        else {
+            generateData()
+        }
+    }
+
+    function clearInputs () {
         setIsEmpty(false)
         setOddOrEven('')
         setNumberRoom('')
@@ -67,8 +83,10 @@ const AddSchedule = () => {
         setTeacher('')
         setSubjectName('')
         setSubjectType('')
+        setTimeLessonObj('')
         dispatch(setFindTime(-1))
         dispatch(setFindOddOrEven(''))
+        dispatch(setFindId(''))
     }
 
     return ( 
@@ -151,7 +169,7 @@ const AddSchedule = () => {
 
             <footer className="container saving">
                 <Link to='/'>
-                    <button className="saving__button" onClick={() => generateData()}>
+                    <button className="saving__button" onClick={() => runFunctions()}>
                         Saqlash
                     </button>
                 </Link>

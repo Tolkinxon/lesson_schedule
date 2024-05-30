@@ -1,59 +1,6 @@
 {
     "schedule": [
-        {
-            "id": 2,
-            "subjectName": "Phisics",
-            "subjectType": "practice",
-            "teacher": "To'lqin Raximov",
-            "timeLesson": "12:30 - 13:50",
-            "numberRoom": 227,
-            "oddOrEven": "odd"
-        },
-        {
-            "id": 3,
-            "subjectName": "Kimyo",
-            "subjectType": "practice",
-            "teacher": "To'lqin Raximov",
-            "timeLesson": "12:30 - 13:50",
-            "numberRoom": 274,
-            "oddOrEven": "even"
-        },
-        {
-            "id": 4,
-            "subjectName": "Kimyo",
-            "subjectType": "practice",
-            "teacher": "To'lqin Raximov",
-            "timeLesson": "10:30 - 11:50",
-            "numberRoom": 274,
-            "oddOrEven": "even"
-        },
-        {
-            "id": 5,
-            "subjectName": "Math",
-            "subjectType": "lecture",
-            "teacher": "To'lqin Raximov",
-            "timeLesson": "08:30 - 09:50",
-            "numberRoom": 127,
-            "oddOrEven": ""
-        },
-        {
-            "id": 1,
-            "subjectName": "Math",
-            "subjectType": "lecture",
-            "teacher": "To'lqin Raximov",
-            "timeLesson": "14:30 - 15:50",
-            "numberRoom": 127,
-            "oddOrEven": "odd"
-        },
-        {
-            "id": 6,
-            "subjectName": "Math",
-            "subjectType": "lecture",
-            "teacher": "To'lqin Raximov",
-            "timeLesson": "14:30 - 15:50",
-            "numberRoom": 127,
-            "oddOrEven": "even"
-        }
+       
         
     ],
 
