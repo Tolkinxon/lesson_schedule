@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useHttp }  from '../hooks/useHttp';
 import { dataAdding, dataEditing, setFindOddOrEven, setFindTime, setFindId } from '../redux/actions';
 import { v4 } from 'uuid'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AddSchedule = () => {
 
@@ -13,6 +13,7 @@ const AddSchedule = () => {
     const staticData = useSelector(state => state.staticData)
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [subjectName, setSubjectName] = useState('')
     const [subjectType, setSubjectType] = useState('')
@@ -37,7 +38,7 @@ const AddSchedule = () => {
     const findingIdx = staticData.findIndex(item => item.id == findId)
     useEffect(() => {
         if (findingItem) {
-            const { subjectName, teacher, numberRoom, subjectType, timeLesson, oddOrEven } = findingItem
+            const { subjectName, teacher, numberRoom, subjectType, oddOrEven } = findingItem
             setSubjectName(subjectName)
             setTeacher(teacher)
             setNumberRoom(numberRoom)
@@ -47,9 +48,6 @@ const AddSchedule = () => {
         }
     }, [findId])
 
-
-
- 
 
     const editData = () => {
         const { id, timeLesson}  = findingItem
@@ -66,7 +64,9 @@ const AddSchedule = () => {
         clearInputs()
     }
 
-    const runFunctions = () => {
+    const runFunctions = (e) => {
+        e.preventDefault();
+        navigate('/')
         if(findId){
             editData()
         }
@@ -140,26 +140,27 @@ const AddSchedule = () => {
                 </div>
             </section>
 
+        <form onSubmit={(e) => runFunctions(e)}>
             <section className="inputs">
                 <div className="container inputs__container" >
                     <label className="inputs__label">
                         Fan nomi*
-                        <input className="inputs__input" type="text"  value={subjectName} onChange={(e) => setSubjectName(e.target.value)}/>
+                        <input className="inputs__input" type="text"  value={subjectName} onChange={(e) => setSubjectName(e.target.value)} required/>
                     </label>
 
                     <label className="inputs__label">
                         <span>Dars turi <span className="inputs__label-extra">(ma'ruza, amaliyot, ...)</span></span>
-                        <input className="inputs__input" type="text" value={subjectType} onChange={(e) => setSubjectType(e.target.value)}/>
+                        <input className="inputs__input" type="text" value={subjectType} onChange={(e) => setSubjectType(e.target.value)} required/>
                     </label>
 
                     <label className="inputs__label">
                         O'qituvchi
-                        <input className="inputs__input" type="text" value={teacher} onChange={(e) => setTeacher(e.target.value)}/>
+                        <input className="inputs__input" type="text" value={teacher} onChange={(e) => setTeacher(e.target.value)} required/>
                     </label>
 
                     <label className="inputs__label">
                         Xona
-                        <input className="inputs__input" type="text" value={numberRoom} onChange={(e) => setNumberRoom(e.target.value)}/>
+                        <input className="inputs__input" type="text" value={numberRoom} onChange={(e) => setNumberRoom(e.target.value)} required/>
                     </label>
 
 
@@ -168,12 +169,11 @@ const AddSchedule = () => {
             </section>
 
             <footer className="container saving">
-                <Link to='/'>
-                    <button className="saving__button" onClick={() => runFunctions()}>
+                    <button  type='submit' className="saving__button" >
                         Saqlash
                     </button>
-                </Link>
             </footer>
+        </form>
       </>
 
      );
