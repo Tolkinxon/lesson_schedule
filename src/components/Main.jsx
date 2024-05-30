@@ -9,13 +9,14 @@ import { useHttp }  from '../hooks/useHttp';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchData, setFindTime } from '../redux/actions'
 import { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const Main = () => {
 
     const staticData = useSelector(state => state.staticData)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const { request } = useHttp()
 
@@ -123,14 +124,11 @@ const Main = () => {
                 <ul className='schedule__list'>
                     { scheduleElements }
                 </ul>
-
-                <Link to="/add-schedule">
-                    <div className="schedule__add-new-schedule" onClick={() => dispatch(setFindTime(data.length))}>
+                <div className="schedule__add-new-schedule" onClick={() =>{ dispatch(setFindTime(data.length)); navigate('/add-schedule')}}>
                         <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
 
                         <p className="schedule__add-new-schedule-text">Jadval kiritish</p>
-                    </div>
-                </Link>
+                </div>
             </div>
         </section>
      </>

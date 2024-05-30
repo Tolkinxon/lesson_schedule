@@ -103,7 +103,7 @@ const Schedule__item = ({ item, idx }) => {
                     <span className="schedule__item-time" >{ timeLesson }</span>
                     <span className="schedule__item-line" ></span>
                 </div>
-                <div className="schedule__item-body-wrappper" >
+                <div className="schedule__item-body-wrappper " style={{display: 'none'}} >
                     <OnlyObjects item={ item } />
                 </div>
             </li>

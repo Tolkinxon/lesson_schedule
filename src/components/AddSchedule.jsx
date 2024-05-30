@@ -51,15 +51,13 @@ const AddSchedule = () => {
 
     const editData = () => {
         const { id, timeLesson}  = findingItem
-        const newData = { id, subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson}
+        const newData = { id, subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson, isEmpty}
         dispatch(dataEditing(newData, findingIdx))
         clearInputs()
     }
 
     const generateData = () => {
-        const newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLessonObj[`${findTime + 1}`]}
-
-      
+        const newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLessonObj[`${findTime + 1}`], isEmpty}
         dispatch(dataAdding(newData))
         clearInputs()
     }
