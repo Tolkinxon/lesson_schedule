@@ -70,7 +70,7 @@ const Main = () => {
 
 
     const next = () => {
-        setChangibleDay(prev => prev += 1)
+       
     }
     
 
@@ -103,14 +103,14 @@ const Main = () => {
 
         <section className='calendar'>
             <div className="container calendar__container">
-                 {/* <img className='calendar__prev-svg' src={calendarNext} alt="prev day svg"/> */}
+                 <img className='calendar__prev-svg' src={calendarNext} alt="prev day svg" onClick={() => setChangibleDay(prev => prev -= 1)}/>
 
                 <ul className='calendar__list'>
                     { calendarElements }
                 </ul>
 
                 <img className='calendar__next-svg' src={calendarNext} alt="next day svg" 
-                onClick={() => next()} />
+                onClick={() => setChangibleDay(prev => prev += 1)} />
             </div>
         </section>
 

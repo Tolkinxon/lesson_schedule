@@ -12,7 +12,7 @@ let classOfCurrentDay = ''
         case 6: day = 'Sha'; break;
     }
 
-    if(idx === 3){
+    if(idx === 4){
         classOfCurrentDay = 'calendar__current-item'
     }
 
