@@ -67,16 +67,22 @@ const Main = () => {
 
     setData([...newData])
   }
+ 
 
-
-    const next = () => {
-       
+  const moveCalendar = (step) => {
+            setChangibleDay(prev => prev += step)
     }
-    
 
     const calendarElements = slisedDates.map((item, idx) => {
-       return <WeekDays key={ item } date={ item } day={ slisedDays[idx] } idx={ idx }/>
-    })
+        return <WeekDays key={ item } date={ item } day={ slisedDays[idx] } idx={ idx } />
+     })
+
+    
+
+
+    
+
+
 
 
     const scheduleElements = data.map((item, idx) => {
@@ -103,14 +109,12 @@ const Main = () => {
 
         <section className='calendar'>
             <div className="container calendar__container">
-                 <img className='calendar__prev-svg' src={calendarNext} alt="prev day svg" onClick={() => setChangibleDay(prev => prev -= 1)}/>
-
-                <ul className='calendar__list'>
-                    { calendarElements }
-                </ul>
-
+                 <img className='calendar__prev-svg' src={calendarNext} alt="prev day svg" onClick={() => moveCalendar(-1)}/>
+                    <ul className='calendar__list '>
+                        { calendarElements }
+                    </ul>
                 <img className='calendar__next-svg' src={calendarNext} alt="next day svg" 
-                onClick={() => setChangibleDay(prev => prev += 1)} />
+                onClick={() => moveCalendar(1)} />
             </div>
         </section>
 

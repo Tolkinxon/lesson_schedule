@@ -11,8 +11,6 @@ const useGenerateWeekDates = ( date ) => {
 
         slisedDates.push(tomorrow.getDate())
         slisedDays.push(tomorrow.getDay())
-
-        console.log(tomorrow);
     }
     
 

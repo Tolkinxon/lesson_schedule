@@ -16,16 +16,22 @@
         transform: rotate(180deg);
     }
 
+    &__list-wrapper {
+      
+        // border: 2px solid red;
+        // 
+    }
+
     &__list {
         max-width: 300px;
         width: 100%;
-        border: 2px solid red;
         white-space: nowrap;
         overflow: hidden;
     }
 
+
+
     &__item {
-        border: 1px solid blue;
         width: 30px;
         display: inline-block;
         transform: translateX(-45px);
@@ -59,9 +65,9 @@
     }
 
     &__current-item {
-        padding: 8px;
-        border-radius: 33%;
-        background-color: #fff0f0;
+        // padding: 8px;
+        // border-radius: 33%;
+        // background-color: #fff0f0;
 
         h3 {
             font-family: 'Inter', sans-serif;

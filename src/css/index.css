@@ -479,12 +479,10 @@ h1, h2, h3, h4, h5, h6, p {
 .calendar__list {
   max-width: 300px;
   width: 100%;
-  border: 2px solid red;
   white-space: nowrap;
   overflow: hidden;
 }
 .calendar__item {
-  border: 1px solid blue;
   width: 30px;
   display: inline-block;
   transform: translateX(-45px);
@@ -510,11 +508,6 @@ h1, h2, h3, h4, h5, h6, p {
   letter-spacing: 0.3000000119px;
   text-align: center;
   color: #94A3B8;
-}
-.calendar__current-item {
-  padding: 8px;
-  border-radius: 33%;
-  background-color: #fff0f0;
 }
 .calendar__current-item h3 {
   font-family: "Inter", sans-serif;

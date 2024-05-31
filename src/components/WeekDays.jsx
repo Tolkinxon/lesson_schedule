@@ -1,5 +1,9 @@
 const WeekDays = ({ date, day, idx }) => {
 
+
+
+
+
 let classOfCurrentDay = ''
 
     switch(day){
