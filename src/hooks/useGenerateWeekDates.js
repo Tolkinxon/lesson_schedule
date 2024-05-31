@@ -1,39 +1,22 @@
-const useGenerateWeekDates = ( year, month, date ) => {
-    function weekDates (year, month, date, staticDate,) {
 
-            if(date < 7){
-            date = 24
-            month--
-            }
 
-            date -= 5
+const useGenerateWeekDates = ( date ) => {
 
-            let weekDates = []
-            let weekDays = []
+    let slisedDates = [], slisedDays = []
 
-            while(weekDates.length < 20){
-                if(date === 32){
-                date = 1
-                month++
-                }
+    for(let i = date - 3; i <= date + 3; i++){
 
-                const weekDate = new Date(`${year}-${month}-${date}`)
+        let tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + i);
 
-                if(!(weekDates.includes(weekDate.getDate()))){
-                    weekDates.push(weekDate.getDate())
-                    weekDays.push(weekDate.getDay())
-                }
-                date++
-            }
+        slisedDates.push(tomorrow.getDate())
+        slisedDays.push(tomorrow.getDay())
 
-            const index = weekDates.findIndex(item => item == staticDate)
-            const slisedDates = weekDates.slice(index - 3, index + 4)
-            const slisedDays = weekDays.slice(index - 3, index + 4)
-
-            return { slisedDates, slisedDays }
+        console.log(tomorrow);
     }
+    
 
-    return weekDates(year, month, date, date)
+    return { slisedDates, slisedDays }
 }
  
 export  { useGenerateWeekDates };

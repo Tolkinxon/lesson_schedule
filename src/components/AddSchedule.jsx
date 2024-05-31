@@ -153,12 +153,12 @@ const AddSchedule = () => {
 
                     <label className="inputs__label">
                         O'qituvchi
-                        <input className="inputs__input" type="text" value={teacher} onChange={(e) => setTeacher(e.target.value)} required/>
+                        <input className="inputs__input" type="text" value={teacher} onChange={(e) => setTeacher(e.target.value)} />
                     </label>
 
                     <label className="inputs__label">
                         Xona
-                        <input className="inputs__input" type="text" value={numberRoom} onChange={(e) => setNumberRoom(e.target.value)} required/>
+                        <input className="inputs__input" type="text" value={numberRoom} onChange={(e) => setNumberRoom(e.target.value)}/>
                     </label>
 
 
@@ -178,3 +178,6 @@ const AddSchedule = () => {
 }
  
 export default AddSchedule;
+
+
+

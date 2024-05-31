@@ -20,12 +20,12 @@ const Main = () => {
 
     const { request } = useHttp()
 
-    const [changibleDay, setChangibleDay] = useState(new Date().getDate())
-    const [changibleMoth, setChangibleMonth] = useState(new Date().getMonth() + 1)
-    const [changibleYear, setChangibleYear] = useState(new Date().getFullYear())
+    const [changibleDay, setChangibleDay] = useState(0)
     const [data, setData] = useState([])
 
-    const { slisedDates, slisedDays } = useGenerateWeekDates(changibleYear, changibleMoth, changibleDay)
+    const { slisedDates, slisedDays } = useGenerateWeekDates(changibleDay)
+
+ 
 
     useEffect(() => {
       if(staticData.length < 1) {
@@ -70,10 +70,7 @@ const Main = () => {
 
 
     const next = () => {
-        setChangibleDay(slisedDates[4])
-        if(slisedDates[4] === 1){
-                setChangibleMonth(prev => prev += 1)
-        }
+        setChangibleDay(prev => prev += 1)
     }
     
 

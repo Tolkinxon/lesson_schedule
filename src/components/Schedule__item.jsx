@@ -34,17 +34,17 @@ const OddOrEventElements = ({  item, idx  }) => {
 
             let color = ''
             return (
-                <Link to="/add-schedule">
-                    <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={index} onClick={() => dispatch(setFindId(id))}>
-                        <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
-        
-                        <p className="schedule__item-teacher">{ teacher }</p>
-        
-                        <p className="schedule__item-room">
-                            { `${ subjectType } ${ numberRoom }-xona` }
-                        </p>
-                    </div>
-                </Link>
+                    <Link to="/add-schedule">
+                        <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={index} onClick={() => dispatch(setFindId(id))}>
+                            <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
+            
+                            <p className="schedule__item-teacher">{ teacher }</p>
+            
+                            <p className="schedule__item-room">
+                                { `${ subjectType } ${ numberRoom }-xona` }
+                            </p>
+                        </div>
+                    </Link>
             )
     });
 
@@ -62,17 +62,19 @@ const OnlyObjects = ({ item, idx }) => {
 
 
     return ( 
-        <Link to="/add-schedule">
-            <div className="schedule__item-body" style={{backgroundColor: color}} key={idx} onClick={() => dispatch(setFindId(id))}>
-                <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
+     
+            <Link to="/add-schedule">
+                <div className="schedule__item-body" style={{backgroundColor: color}} key={idx} onClick={() => dispatch(setFindId(id))}>
+                    <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
 
-                <p className="schedule__item-teacher">{ teacher }</p>
+                    <p className="schedule__item-teacher">{ teacher }</p>
 
-                <p className="schedule__item-room">
-                    { `${ subjectType } ${ numberRoom }-xona` }
-                </p>
-            </div>
-        </Link>
+                    <p className="schedule__item-room">
+                        { `${ subjectType } ${ numberRoom }-xona` }
+                    </p>
+                </div>
+            </Link>
+      
     );
 }
  
@@ -88,7 +90,7 @@ const Schedule__item = ({ item, idx }) => {
                     <span className="schedule__item-time" >{ timeLesson }</span>
                     <span className="schedule__item-line" ></span>
                 </div>
-                <div className="schedule__item-body-wrappper" >
+                <div className="schedule__item-body-wrappper">
                     <OddOrEventElements item={ item } idx={ idx }/>
                 </div>
             </li>
@@ -96,14 +98,14 @@ const Schedule__item = ({ item, idx }) => {
     }
 
     else {
-        const { timeLesson } = item
+        const { timeLesson, isEmpty } = item
         return (
             <li className="schedule__item">
                 <div className="schedule__item-header">
                     <span className="schedule__item-time" >{ timeLesson }</span>
                     <span className="schedule__item-line" ></span>
                 </div>
-                <div className="schedule__item-body-wrappper " style={{display: 'none'}} >
+                <div className="schedule__item-body-wrappper " style={{display: isEmpty ? 'none':'block'}} >
                     <OnlyObjects item={ item } />
                 </div>
             </li>
