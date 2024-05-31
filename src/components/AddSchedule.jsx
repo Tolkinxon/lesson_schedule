@@ -51,13 +51,22 @@ const AddSchedule = () => {
 
     const editData = () => {
         const { id, timeLesson}  = findingItem
-        const newData = { id, subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson, isEmpty}
+        let newData = { id, subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson }
+
+        if(isEmpty){
+            newData = null
+        }
+
         dispatch(dataEditing(newData, findingIdx))
         clearInputs()
     }
 
     const generateData = () => {
-        const newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLessonObj[`${findTime + 1}`], isEmpty}
+
+        let newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLessonObj[`${findTime + 1}`]}
+        if(isEmpty){
+            newData = null
+        }
         dispatch(dataAdding(newData))
         clearInputs()
     }
@@ -160,7 +169,6 @@ const AddSchedule = () => {
                         Xona
                         <input className="inputs__input" type="text" value={numberRoom} onChange={(e) => setNumberRoom(e.target.value)}/>
                     </label>
-
 
                     <p className="inputs__next-lesson">keyingi dars 28-dekabr</p>
                 </div>

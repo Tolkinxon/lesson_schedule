@@ -38,6 +38,7 @@ export const reducer = (state = initialState, action) => {
             state.staticData[action.payload.idx] = action.payload.data
             return {
                 ...state,
+                staticData: state.staticData.filter(item => item !== null)
             }
         default: 
             return {

@@ -42,7 +42,7 @@ const Main = () => {
         preparingToRender(staticData)
     }, [staticData])
 
-    
+    console.log(staticData);
   const preparingToRender = (staticData) => {
     const newData = [...staticData]
        
@@ -76,13 +76,6 @@ const Main = () => {
     const calendarElements = slisedDates.map((item, idx) => {
         return <WeekDays key={ item } date={ item } day={ slisedDays[idx] } idx={ idx } />
      })
-
-    
-
-
-    
-
-
 
 
     const scheduleElements = data.map((item, idx) => {

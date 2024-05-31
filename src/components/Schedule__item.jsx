@@ -1,6 +1,6 @@
 import addSchedule from './../assets/add_schedule.svg'
 import { setFindTime, setFindOddOrEven, setFindId } from '../redux/actions'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const OddOrEventElements = ({  item, idx  }) => {
@@ -98,14 +98,14 @@ const Schedule__item = ({ item, idx }) => {
     }
 
     else {
-        const { timeLesson, isEmpty } = item
+        const { timeLesson } = item
         return (
             <li className="schedule__item">
                 <div className="schedule__item-header">
                     <span className="schedule__item-time" >{ timeLesson }</span>
                     <span className="schedule__item-line" ></span>
                 </div>
-                <div className="schedule__item-body-wrappper " style={{display: isEmpty ? 'none':'block'}} >
+                <div className="schedule__item-body-wrappper ">
                     <OnlyObjects item={ item } />
                 </div>
             </li>
