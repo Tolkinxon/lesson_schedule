@@ -1,5 +1,6 @@
 const initialState = {
     staticData: [],
+    timeLessonObj: {},
     findTime: -1,
     findOddOrEven: '',
     findId: ''
@@ -27,6 +28,12 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 staticData: action.payload
+            }
+            
+        case "TIME_LESSON_DATA_FETCHING":
+            return {
+                ...state,
+                timeLessonObj: action.payload
             }
         case "DATA_ADDING":
             const newArr = [action.payload, ...state.staticData]

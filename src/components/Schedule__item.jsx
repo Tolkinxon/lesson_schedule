@@ -82,7 +82,7 @@ const OnlyObjects = ({ item, idx }) => {
 
 const Schedule__item = ({ item, idx }) => {
 
-    if(item.id == undefined){
+    if(item.length == 2){
         const { timeLesson } = item[0]
         return(
             <li className="schedule__item">
@@ -98,15 +98,17 @@ const Schedule__item = ({ item, idx }) => {
     }
 
     else {
+
         const { timeLesson } = item
+
         return (
             <li className="schedule__item">
                 <div className="schedule__item-header">
                     <span className="schedule__item-time" >{ timeLesson }</span>
                     <span className="schedule__item-line" ></span>
                 </div>
-                <div className="schedule__item-body-wrappper ">
-                    <OnlyObjects item={ item } />
+                <div className="schedule__item-body-wrappper " style={{height: item.id ? '155px': '10px'}}>
+                  { item.id ? <OnlyObjects item={ item }/> : <button>add</button> }  
                 </div>
             </li>
         )

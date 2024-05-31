@@ -7,7 +7,7 @@ import Schedule__item from './Schedule__item'
 import { useGenerateWeekDates } from '../hooks/useGenerateWeekDates';
 import { useHttp }  from '../hooks/useHttp';
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchData, setFindTime } from '../redux/actions'
+import { fetchData, setFindTime, timeLessonFetchData } from '../redux/actions'
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 const Main = () => {
 
     const staticData = useSelector(state => state.staticData)
+    const timeLessonObj = useSelector(state => state.timeLessonObj)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -38,15 +39,55 @@ const Main = () => {
       }
     }, [])
 
+
+    useEffect(() => {
+        request('http://localhost:3001/lessonsTime')
+            .then(data => {
+                dispatch(timeLessonFetchData(data))
+            })
+            .catch((e) => console.log(e))
+    }, [])
+
+
     useEffect(() => {
         preparingToRender(staticData)
     }, [staticData])
 
-    console.log(staticData);
+
   const preparingToRender = (staticData) => {
     const newData = [...staticData]
-       
+
     newData.sort((a, b) => a.timeLesson.slice(0, 2) - b.timeLesson.slice(0, 2))
+
+    const maxTimeLesson = newData[newData.length - 1]?.timeLesson?.slice(0, 2)
+
+    console.log(timeLessonObj);
+
+    const newFullyTimeLessonArr = []
+    for(let element in timeLessonObj){
+        const currentTimeLesson = +timeLessonObj[element].slice(0, 2)
+        if(currentTimeLesson <= maxTimeLesson){
+            newFullyTimeLessonArr.push(timeLessonObj[element])
+            }
+    }
+
+
+    newFullyTimeLessonArr.forEach(time => {
+       const checking = newData.some(item => item?.timeLesson == time)
+
+       if(!checking) {
+        const newObj = {
+            timeLesson: time
+        }
+        newData.push(newObj)
+       }
+    })
+
+    newData.sort((a, b) => a.timeLesson.slice(0, 2) - b.timeLesson.slice(0, 2))
+
+
+
+
 
     newData.forEach((item, idx) => {
         if(newData[idx].timeLesson == newData[idx + 1]?.timeLesson){
@@ -65,8 +106,11 @@ const Main = () => {
         }
     })
 
+   
+
     setData([...newData])
   }
+
  
 
   const moveCalendar = (step) => {
