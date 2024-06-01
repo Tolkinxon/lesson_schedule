@@ -1,7 +1,9 @@
+import { useDispatch } from "react-redux";
+import { setFindDay } from "../redux/actions";
+
 const WeekDays = ({ date, day, idx }) => {
 
-
-
+    const dispatch = useDispatch()
 
 
 let classOfCurrentDay = ''
@@ -18,6 +20,7 @@ let classOfCurrentDay = ''
 
     if(idx === 4){
         classOfCurrentDay = 'calendar__current-item'
+        dispatch(setFindDay(day))
     }
 
 

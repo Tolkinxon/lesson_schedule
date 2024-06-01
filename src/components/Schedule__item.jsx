@@ -36,7 +36,7 @@ const OddOrEventElements = ({  item, idx  }) => {
       
             return (
                     <Link to="/add-schedule" style={{textDecoration: 'none'}}>
-                        <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={index} onClick={() => {dispatch(setFindId(id)); dispatch(setFindOddOrEven(isTwoObj))}}>
+                        <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={index} onClick={() => {dispatch(setFindId(id)); dispatch(setFindOddOrEven(isTwoObj)); dispatch(setFindTime(idx))}}>
                             <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
             
                             <p className="schedule__item-teacher">{ teacher }</p>
@@ -62,7 +62,7 @@ const OnlyObjects = ({ item, idx }) => {
     return ( 
      
             <Link to="/add-schedule" style={{textDecoration: 'none'}}>
-                <div className="schedule__item-body" style={{backgroundColor: color}} key={idx} onClick={() => dispatch(setFindId(id))}>
+                <div className="schedule__item-body" style={{backgroundColor: color}} key={idx} onClick={() => {dispatch(setFindId(id)); dispatch(setFindTime(idx))}}>
                     <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
 
                     <p className="schedule__item-teacher">{ teacher }</p>
@@ -108,7 +108,7 @@ const Schedule__item = ({ item, idx }) => {
                     <span className="schedule__item-line" ></span>
                 </div>
                 <div className="schedule__item-body-wrappper " style={{height: item.id ? '108px': '0px'}}>
-                  { item.id ? <OnlyObjects item={ item }/> : 
+                  { item.id ? <OnlyObjects item={ item } idx={ idx } /> : 
                   <img className="schedule__item-add-img" onClick={() => {dispatch(setFindTime(idx)); navigate('/add-schedule')}}  src={addSchedule} />}  
                 </div>
             </li>

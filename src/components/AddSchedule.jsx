@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const AddSchedule = () => {
 
     const findTime = useSelector(state => state.findTime)
+    const findDay = useSelector(state => state.findDay)
     const findOddOrEven = useSelector(state => state.findOddOrEven)
     const findId= useSelector(state => state.findId)
     const staticData = useSelector(state => state.staticData)
@@ -110,6 +111,10 @@ const AddSchedule = () => {
         dispatch(setFindId(''))
     }
 
+    const customValidity = (text) => {
+        return text
+    }
+
 
 
     return ( 
@@ -117,10 +122,10 @@ const AddSchedule = () => {
             <header className="add-schedule-header">
               <div className="container add-schedule-header__container">
                     <h1 className="add-schedule-header__heading">
-                        Payshanba,
+                        { findDay=="Jum"?'Juma,':findDay == "Sha"?"Shanba,":findDay+'shanba,'  }
                     </h1>
                     <h2 className="add-schedule-header__heading">
-                        4-para
+                       { findTime + 1 + " - para" }
                     </h2>
               </div>
             </header>

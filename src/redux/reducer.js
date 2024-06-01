@@ -2,6 +2,7 @@ const initialState = {
     staticData: [],
     timeLessonObj: {},
     findTime: -1,
+    findDay: '',
     findOddOrEven: '',
     findId: ''
 }
@@ -12,6 +13,11 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 findTime: action.payload
+            }
+        case 'FIND_DAY':
+            return {
+                ...state,
+                findDay: action.payload
             }
         case 'FIND_ODD_OR_EVEN':
             return {
