@@ -61,7 +61,6 @@ const Main = () => {
 
     const maxTimeLesson = newData[newData.length - 1]?.timeLesson?.slice(0, 2)
 
-    console.log(timeLessonObj);
 
     const newFullyTimeLessonArr = []
     for(let element in timeLessonObj){
@@ -110,6 +109,7 @@ const Main = () => {
 
     setData([...newData])
   }
+
 
  
 

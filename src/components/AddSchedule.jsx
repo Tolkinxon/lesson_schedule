@@ -1,9 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
-import { useHttp }  from '../hooks/useHttp';
 import { dataAdding, dataEditing, setFindOddOrEven, setFindTime, setFindId } from '../redux/actions';
 import { v4 } from 'uuid'
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AddSchedule = () => {
 
@@ -11,6 +10,7 @@ const AddSchedule = () => {
     const findOddOrEven = useSelector(state => state.findOddOrEven)
     const findId= useSelector(state => state.findId)
     const staticData = useSelector(state => state.staticData)
+    const timeLessonObj = useSelector(state => state.timeLessonObj)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -19,19 +19,9 @@ const AddSchedule = () => {
     const [subjectType, setSubjectType] = useState('')
     const [teacher, setTeacher] = useState('')
     const [timeLesson, setTimeLesson] = useState('')
-    const [timeLessonObj, setTimeLessonObj] = useState('')
     const [numberRoom, setNumberRoom] = useState('')
     const [oddOrEven, setOddOrEven] = useState(findOddOrEven)
     const [isEmpty, setIsEmpty] = useState(false)
-
-    const { request } = useHttp()
-    useEffect(() => {
-        request('http://localhost:3001/lessonsTime')
-            .then(data => {
-                setTimeLessonObj(data)
-            })
-            .catch((e) => console.log(e))
-    }, [])
 
 
     const findingItem = staticData.find(item => item.id == findId)
@@ -47,7 +37,12 @@ const AddSchedule = () => {
             setIsEmpty(false)
         }
     }, [findId])
+    
 
+    useEffect(()=>{
+        document.querySelectorAll('.inputs__input').forEach(item => item.disabled = isEmpty)
+        document.querySelectorAll('.weekly-lessons-type').forEach(item => item.disabled = isEmpty)
+    },[isEmpty])
 
     const editData = () => {
         const { id, timeLesson}  = findingItem
@@ -90,11 +85,12 @@ const AddSchedule = () => {
         setTeacher('')
         setSubjectName('')
         setSubjectType('')
-        setTimeLessonObj('')
         dispatch(setFindTime(-1))
         dispatch(setFindOddOrEven(''))
         dispatch(setFindId(''))
     }
+
+
 
     return ( 
        <>
@@ -111,8 +107,8 @@ const AddSchedule = () => {
 
             <section className="radio-btns">
                 <div className="container radio-btns__container">
-                    <label className="radio-btns__label"  htmlFor="first" >
-                        <input className="radio-btns__input visually-hidden" type="radio" id="first" name='subject-type' checked={oddOrEven == ''} value='' onChange={(e) => setOddOrEven(e.target.value)}/>
+                    <label className="radio-btns__label"  htmlFor="first">
+                        <input className="weekly-lessons-type radio-btns__input visually-hidden" type="radio" id="first" name='subject-type' checked={oddOrEven == ''} value='' onChange={(e) => setOddOrEven(e.target.value)} />
                        
                         <div className="radio-btns__custom"></div>
                         
@@ -120,7 +116,7 @@ const AddSchedule = () => {
                     </label>
 
                     <label className="radio-btns__label" htmlFor="second">
-                        <input className="radio-btns__input visually-hidden"  type="radio" id="second" name='subject-type' value='odd' checked={oddOrEven == 'odd'} onChange={(e) => setOddOrEven(e.target.value)}/>
+                        <input className="weekly-lessons-type radio-btns__input visually-hidden"  type="radio" id="second" name='subject-type' value='odd' checked={oddOrEven == 'odd'} onChange={(e) => setOddOrEven(e.target.value)}/>
                        
                         <div className="radio-btns__custom"></div>
                        
@@ -128,7 +124,7 @@ const AddSchedule = () => {
                     </label>
 
                     <label className="radio-btns__label" htmlFor="third">
-                        <input className="radio-btns__input visually-hidden" type="radio" id="third" name='subject-type' value='even' checked={oddOrEven == 'even'} onChange={(e) => setOddOrEven(e.target.value)}/>
+                        <input className="weekly-lessons-type radio-btns__input visually-hidden" type="radio" id="third" name='subject-type' value='even' checked={oddOrEven == 'even'} onChange={(e) => setOddOrEven(e.target.value)}/>
                       
                         <div className="radio-btns__custom"></div>
 
@@ -150,9 +146,9 @@ const AddSchedule = () => {
         <form onSubmit={(e) => runFunctions(e)}>
             <section className="inputs">
                 <div className="container inputs__container" >
-                    <label className="inputs__label">
+                    <label className="inputs__label" >
                         Fan nomi*
-                        <input className="inputs__input" type="text"  value={subjectName} onChange={(e) => setSubjectName(e.target.value)} required/>
+                        <input className="inputs__input" type="text"  value={subjectName} onChange={(e) => setSubjectName(e.target.value)} required disabled/>
                     </label>
 
                     <label className="inputs__label">
