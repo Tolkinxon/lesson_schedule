@@ -24,6 +24,7 @@ const Main = () => {
     const [changibleDay, setChangibleDay] = useState(0)
     const [data, setData] = useState([])
 
+
     const { slisedDates, slisedDays } = useGenerateWeekDates(changibleDay)
 
  
@@ -85,9 +86,6 @@ const Main = () => {
     newData.sort((a, b) => a.timeLesson.slice(0, 2) - b.timeLesson.slice(0, 2))
 
 
-
-
-
     newData.forEach((item, idx) => {
         if(newData[idx].timeLesson == newData[idx + 1]?.timeLesson){
             const newArr = [item, newData[idx + 1]]
@@ -105,15 +103,13 @@ const Main = () => {
         }
     })
 
-   
-
     setData([...newData])
   }
 
 
  
 
-  const moveCalendar = (step) => {
+  const changeCalendar = (step) => {
             setChangibleDay(prev => prev += step)
     }
 
@@ -146,12 +142,12 @@ const Main = () => {
 
         <section className='calendar'>
             <div className="container calendar__container">
-                 <img className='calendar__prev-svg' src={calendarNext} alt="prev day svg" onClick={() => moveCalendar(-1)}/>
+                 <img className='calendar__prev-svg' src={calendarNext} alt="prev day svg" onClick={() => changeCalendar(-1)}/>
                     <ul className='calendar__list '>
                         { calendarElements }
                     </ul>
                 <img className='calendar__next-svg' src={calendarNext} alt="next day svg" 
-                onClick={() => moveCalendar(1)} />
+                onClick={() => changeCalendar(1)} />
             </div>
         </section>
 

@@ -7,12 +7,10 @@ const OddOrEventElements = ({  item, idx  }) => {
 
     const dispatch = useDispatch()
 
-
     const finding = (idx, oddOrEven) => {
         dispatch(setFindTime(idx))
         dispatch(setFindOddOrEven(oddOrEven))
     }
-
 
    const element = item.map((element, index) => {
 
@@ -55,7 +53,6 @@ const OnlyObjects = ({ item, idx }) => {
 
     const dispatch = useDispatch()
 
-
     const {id, subjectName, teacher, numberRoom, subjectType } = item
 
     let color = ''
@@ -77,8 +74,6 @@ const OnlyObjects = ({ item, idx }) => {
       
     );
 }
- 
-
 
 const Schedule__item = ({ item, idx }) => {
 
@@ -96,7 +91,6 @@ const Schedule__item = ({ item, idx }) => {
             </li>
         ) 
     }
-
     else {
 
         const { timeLesson } = item

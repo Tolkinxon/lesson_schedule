@@ -39,7 +39,7 @@ export const reducer = (state = initialState, action) => {
             const newArr = [action.payload, ...state.staticData]
             return {
                 ...state,
-                staticData: newArr
+                staticData: newArr.filter(item => item !== null)
             }
         case "DATA_EDITING":
             state.staticData[action.payload.idx] = action.payload.data

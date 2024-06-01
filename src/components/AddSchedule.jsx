@@ -24,6 +24,7 @@ const AddSchedule = () => {
     const [isEmpty, setIsEmpty] = useState(false)
 
 
+    //setting datas in inputs from array
     const findingItem = staticData.find(item => item.id == findId)
     const findingIdx = staticData.findIndex(item => item.id == findId)
     useEffect(() => {
@@ -37,13 +38,8 @@ const AddSchedule = () => {
             setIsEmpty(false)
         }
     }, [findId])
-    
 
-    useEffect(()=>{
-        document.querySelectorAll('.inputs__input').forEach(item => item.disabled = isEmpty)
-        document.querySelectorAll('.weekly-lessons-type').forEach(item => item.disabled = isEmpty)
-    },[isEmpty])
-
+    // edit function for edit staticData 
     const editData = () => {
         const { id, timeLesson}  = findingItem
         let newData = { id, subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson }
@@ -51,11 +47,30 @@ const AddSchedule = () => {
         if(isEmpty){
             newData = null
         }
-
         dispatch(dataEditing(newData, findingIdx))
         clearInputs()
     }
+    
 
+    // this codes for disable inputs by clicking isEmpty in label
+    useEffect(()=>{
+        document.querySelectorAll('.inputs__input').forEach(item => item.disabled = isEmpty)
+        document.querySelectorAll('.weekly-lessons-type').forEach(item => item.disabled = isEmpty)
+    },[isEmpty])
+
+
+    // this codes for disable radio btns by clicking add new odd or even
+    useEffect(()=>{
+        if(findOddOrEven){
+            document.querySelectorAll('.weekly-lessons-type').forEach(item => item.disabled = true)
+        }
+    },[findOddOrEven])
+    console.log(findOddOrEven);
+
+
+
+
+    //creating new item function
     const generateData = () => {
 
         let newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLessonObj[`${findTime + 1}`]}
@@ -66,6 +81,8 @@ const AddSchedule = () => {
         clearInputs()
     }
 
+
+    // here determinate which function will work
     const runFunctions = (e) => {
         e.preventDefault();
         navigate('/')
@@ -77,6 +94,8 @@ const AddSchedule = () => {
         }
     }
 
+
+    // clearing all inputs value and states
     function clearInputs () {
         setIsEmpty(false)
         setOddOrEven('')
@@ -148,7 +167,7 @@ const AddSchedule = () => {
                 <div className="container inputs__container" >
                     <label className="inputs__label" >
                         Fan nomi*
-                        <input className="inputs__input" type="text"  value={subjectName} onChange={(e) => setSubjectName(e.target.value)} required disabled/>
+                        <input className="inputs__input" type="text"  value={subjectName} onChange={(e) => setSubjectName(e.target.value)} required />
                     </label>
 
                     <label className="inputs__label">
