@@ -33,19 +33,7 @@ const Main = () => {
       if(staticData.length < 1) {
         request('http://localhost:3001/schedule')
         .then(data => {
-            data.forEach((item, idx) => {
-                let color = ''
-                switch(idx){
-                    case 0: color = '#DE496E'; break;
-                    case 1: color = '#8572FF'; break;
-                    case 2: color = '#2E97A7'; break;
-                    case 3: color = '#2E54A7'; break;
-                    case 4: color = '#2A54A7'; break;
-                }
-
-                item.color = color
-            })
-            console.log(data);
+       
             dispatch(fetchData(data))
             preparingToRender(data)
         })
@@ -69,7 +57,22 @@ const Main = () => {
 
 
   const preparingToRender = (staticData) => {
+
     const newData = [...staticData]
+
+    newData.forEach((item, idx) => {
+        let color = ''
+        switch(idx){
+            case 0: color = '#DE496E'; break;
+            case 1: color = '#8572FF'; break;
+            case 2: color = '#2E97A7'; break;
+            case 3: color = '#5E54A7'; break;
+            case 4: color = '#2A54C7'; break;
+            default: color = 'red'; break;
+        }
+
+        item.color = color
+    })
 
     newData.sort((a, b) => a.timeLesson.slice(0, 2) - b.timeLesson.slice(0, 2))
 

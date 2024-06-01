@@ -1,7 +1,7 @@
 import addSchedule from './../assets/add_schedule.svg'
 import { setFindTime, setFindOddOrEven, setFindId } from '../redux/actions'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const OddOrEventElements = ({  item, idx  }) => {
 
@@ -21,7 +21,7 @@ const OddOrEventElements = ({  item, idx  }) => {
 
             if(subjectName == undefined){
                 return (
-                 <Link to="/add-schedule">
+                 <Link to="/add-schedule" style={{textDecoration: 'none'}}>
                        <div className={`schedule__add-new-schedule half-schedule ${element}`}  key={index} onClick={() => finding(idx, element)}>
                             <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
             
@@ -35,7 +35,7 @@ const OddOrEventElements = ({  item, idx  }) => {
 
       
             return (
-                    <Link to="/add-schedule">
+                    <Link to="/add-schedule" style={{textDecoration: 'none'}}>
                         <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={index} onClick={() => {dispatch(setFindId(id)); dispatch(setFindOddOrEven(isTwoObj))}}>
                             <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
             
@@ -61,7 +61,7 @@ const OnlyObjects = ({ item, idx }) => {
 
     return ( 
      
-            <Link to="/add-schedule">
+            <Link to="/add-schedule" style={{textDecoration: 'none'}}>
                 <div className="schedule__item-body" style={{backgroundColor: color}} key={idx} onClick={() => dispatch(setFindId(id))}>
                     <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
 
@@ -77,6 +77,11 @@ const OnlyObjects = ({ item, idx }) => {
 }
 
 const Schedule__item = ({ item, idx }) => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    
 
     if(item.length == 2){
         const { timeLesson } = item[0]
@@ -102,8 +107,9 @@ const Schedule__item = ({ item, idx }) => {
                     <span className="schedule__item-time" >{ timeLesson }</span>
                     <span className="schedule__item-line" ></span>
                 </div>
-                <div className="schedule__item-body-wrappper " style={{height: item.id ? '155px': '10px'}}>
-                  { item.id ? <OnlyObjects item={ item }/> : <button>add</button> }  
+                <div className="schedule__item-body-wrappper " style={{height: item.id ? '108px': '0px'}}>
+                  { item.id ? <OnlyObjects item={ item }/> : 
+                  <img className="schedule__item-add-img" onClick={() => {dispatch(setFindTime(idx)); navigate('/add-schedule')}}  src={addSchedule} />}  
                 </div>
             </li>
         )
