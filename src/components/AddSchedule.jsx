@@ -65,6 +65,7 @@ const AddSchedule = () => {
             document.querySelectorAll('.weekly-lessons-type').forEach(item => item.disabled = true)
         }
     },[findOddOrEven])
+
     console.log(findOddOrEven);
 
 

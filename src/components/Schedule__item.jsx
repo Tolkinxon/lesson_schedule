@@ -12,9 +12,12 @@ const OddOrEventElements = ({  item, idx  }) => {
         dispatch(setFindOddOrEven(oddOrEven))
     }
 
+    let isTwoObj = typeof item[1] === 'object'
+
+  
    const element = item.map((element, index) => {
 
-            const {id, subjectName, teacher, numberRoom, subjectType, oddOrEven } = element
+            const {id, subjectName, teacher, numberRoom, subjectType, oddOrEven, color } = element
 
             if(subjectName == undefined){
                 return (
@@ -30,10 +33,10 @@ const OddOrEventElements = ({  item, idx  }) => {
                 )
             }
 
-            let color = ''
+      
             return (
                     <Link to="/add-schedule">
-                        <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={index} onClick={() => dispatch(setFindId(id))}>
+                        <div className={`schedule__item-body odd-or-even ${oddOrEven}`}  style={{backgroundColor: color}} key={index} onClick={() => {dispatch(setFindId(id)); dispatch(setFindOddOrEven(isTwoObj))}}>
                             <h3 className="schedule__item-subject" style={{color}}>{ subjectName }</h3>
             
                             <p className="schedule__item-teacher">{ teacher }</p>
@@ -53,9 +56,7 @@ const OnlyObjects = ({ item, idx }) => {
 
     const dispatch = useDispatch()
 
-    const {id, subjectName, teacher, numberRoom, subjectType } = item
-
-    let color = ''
+    const {id, subjectName, teacher, numberRoom, subjectType, color } = item
 
 
     return ( 
