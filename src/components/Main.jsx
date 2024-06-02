@@ -153,7 +153,7 @@ const Main = () => {
                     </h2>
             </div>
 
-                <img className='header__clock' src={headerClock} alt="header clock icon for configure time" />
+                <img className='header__clock' src={headerClock} alt="header clock icon for configure time" onClick={() => navigate('/configure-time-lessons')}/>
                 </div>
         </header>
 

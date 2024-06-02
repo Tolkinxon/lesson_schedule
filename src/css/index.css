@@ -459,6 +459,7 @@ h1, h2, h3, h4, h5, h6, p {
 .header__clock {
   width: 40px;
   height: 40px;
+  cursor: pointer;
 }
 
 .calendar {
@@ -825,6 +826,11 @@ h1, h2, h3, h4, h5, h6, p {
   text-align: left;
   color: #1E293B;
   margin-bottom: 15px;
+}
+.configure__list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 .configure__item {
   max-width: 335px;

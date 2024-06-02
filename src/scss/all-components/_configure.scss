@@ -28,8 +28,11 @@
         
     }
 
-    // &__list {
-    // }
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
 
     &__item {
         max-width: 335px;
