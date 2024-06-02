@@ -5,6 +5,8 @@ import { useHttp }  from '../hooks/useHttp';
 
 const ConfigureTimeLessons = () => {
 
+    const [isOpenEditTimeSection, setIsOpenEditTimeSection] = useState(false)
+
     const { request } = useHttp()
 
     const [timeLessonsList, setTimeLessonsList] = useState([])
@@ -23,7 +25,7 @@ const ConfigureTimeLessons = () => {
 
 
     const elements = timeLessonsList.map((item, idx) => {
-       return <ConfigureTimeLessonsItem item={ item } idx={ idx } />
+       return <ConfigureTimeLessonsItem item={ item } idx={ idx } setIsOpenEditTimeSection={setIsOpenEditTimeSection}/>
     })
 
     
@@ -44,27 +46,27 @@ const ConfigureTimeLessons = () => {
                         { elements }
                     </ul>
                 </div>
-            </section>
 
-            <section className='editing-time'>
-                <div className='container editing-time__contaner'>
-                    <div className='editing-time__line'></div>
+                <section className='editing-time' style={{display: isOpenEditTimeSection ? 'block':'none'}}>
+                    <div className='container editing-time__container'>
+                        <div className='editing-time__line'></div>
 
-                    <p className='editing-time__text'> Select </p>
+                        <p className='editing-time__text' onClick={() => setIsOpenEditTimeSection(prev => prev = !prev)}> Select </p>
 
-                    <div className='editing-time__wrapper'>
-                        <ul className='editing-time__start-list'>
+                        <div className='editing-time__wrapper'>
+                            <ul className='editing-time__start-list'>
 
-                        </ul>
+                            </ul>
 
-                        <ul className='editing-time__end-list'>
+                            <ul className='editing-time__end-list'>
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
-
-                </div>
-
+                </section>
             </section>
+
+       
         </>
      );
 }

@@ -1,6 +1,6 @@
 import pen from './../assets/pen.svg'
 
-const ConfigureTimeLessonsItem = ({ item, idx }) => {
+const ConfigureTimeLessonsItem = ({ item, idx, setIsOpenEditTimeSection }) => {
 
     return ( 
         <li className='configure__item'>
@@ -12,7 +12,7 @@ const ConfigureTimeLessonsItem = ({ item, idx }) => {
                 { item }
             </p>
 
-            <img className='configure__item-pen' src={pen} alt="there is a pen for edit time lesson" />
+            <img className='configure__item-pen' src={pen} alt="there is a pen for edit time lesson" onClick={() => setIsOpenEditTimeSection(prev => prev = !prev)}/>
         </li>
      );
 }
