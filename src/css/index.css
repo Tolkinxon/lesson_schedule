@@ -798,4 +798,72 @@ h1, h2, h3, h4, h5, h6, p {
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+.configure {
+  background-image: url("./../assets/bg-for-add-schedule.svg");
+  background-repeat: no-repeat;
+  background-position: calc(50% + 50px) 0px;
+}
+.configure__container {
+  padding-top: 50px;
+}
+.configure__heading {
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29.26px;
+  text-align: left;
+  color: #1E293B;
+  margin-bottom: 60px;
+}
+.configure__text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.5px;
+  text-align: left;
+  color: #1E293B;
+  margin-bottom: 15px;
+}
+.configure__item {
+  max-width: 335px;
+  width: 100%;
+  height: 40px;
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 12px;
+  position: relative;
+  background-color: #F1F5F9;
+  border-radius: 10px;
+}
+.configure__item-number {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.5px;
+  text-align: center;
+  color: #1E293B;
+}
+.configure__item-line {
+  height: 20px;
+  width: 1px;
+  border-left: 1px solid #7752FE;
+}
+.configure__item-time {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.5px;
+  text-align: center;
+  color: #1E293B;
+}
+.configure__item-pen {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }/*# sourceMappingURL=index.css.map */

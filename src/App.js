@@ -1,6 +1,7 @@
 import './css/index.css'
 import Main from "./components/Main"
 import AddSchedule from './components/AddSchedule'
+import ConfigureTimeLessons from './components/ConfigureTimeLessons'
 import { Route, Routes } from 'react-router-dom'
 import { createStore } from 'redux'
 import { reducer } from './redux/reducer'
@@ -15,6 +16,7 @@ function App() {
         <Routes>
             <Route path='/' element={ <Main /> }/>
             <Route path='/add-schedule' element={ <AddSchedule /> }/>
+            <Route path='/configure-time-lessons' element={ <ConfigureTimeLessons /> }/>
         </Routes>
     </Provider>
   )
