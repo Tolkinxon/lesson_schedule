@@ -1,13 +1,13 @@
 import ConfigureTimeLessonsItem from './ConfigureTimeLessonsItem';
 import { useEffect, useState } from 'react';
 import { useHttp }  from '../hooks/useHttp';
-import { retry } from '@reduxjs/toolkit/query';
+import { v4 } from 'uuid'
 
 
 const ConfigureTimeLessons = () => {
 
     const [isOpenEditTimeSection, setIsOpenEditTimeSection] = useState(false)
-    const [changeIndex, setChangeIndex] = useState(0)
+    const [startHour, setStartHour] = useState('00')
 
     const { request } = useHttp()
 
@@ -33,11 +33,26 @@ const ConfigureTimeLessons = () => {
   
     function generatorTimes(limitTime) {
         const generatedTimes = []
+        const extraTimes = []
         for(let i = 0; i < limitTime; i++){
+        
             const time = (`${i}`.length == 2 ? `${i}`:`0${i}`)
-            generatedTimes.push(<li className='editing-time__item' key={i} >{ time }</li>)
+            generatedTimes.push(<li className='editing-time__item' key={ v4() } >{ time }</li>)
+
+            if(i < 3){
+                extraTimes.push(<li className='editing-time__item' key={ v4() } >{ time }</li>)
+            }
         }
-        return generatedTimes
+        return [...generatedTimes, ...extraTimes]
+    }
+
+
+    let content = '00'
+    const startListForHour = (e) => {
+       
+        const distanceUntillTop = e.target.scrollTop
+        content = e.target.children[Math.floor(distanceUntillTop / 37)].textContent
+        setStartHour(content)
     }
 
 
@@ -64,11 +79,11 @@ const ConfigureTimeLessons = () => {
 
                         <p className='editing-time__text' onClick={() => setIsOpenEditTimeSection(prev => prev = !prev)}> Select </p>
 
-                        <div className='editing-time__wrapper' onClick={() => setChangeIndex(prev => prev -= 1)}>
+                        <div className='editing-time__wrapper'>
                             <div>
-                                <p className='editing-time__selected-for-start'>00:00</p>
+                            <p className='editing-time__selected-for-start' >{ startHour } : 00</p>
                                 <div className='editing-time__start-list-wrapper'>
-                                    <ul className='editing-time__start-list-for-hour' >
+                                    <ul className='editing-time__start-list-for-hour' onScroll={e => startListForHour(e)}>
                                         { generatorTimes(24) }
                                     </ul>
                                     <ul className='editing-time__start-list-for-minute' >
