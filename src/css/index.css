@@ -952,6 +952,10 @@ h1, h2, h3, h4, h5, h6, p {
   height: 96px;
   overflow-y: scroll;
 }
+.editing-time__start-list-for-hour::-webkit-scrollbar, .editing-time__start-list-for-minute::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+}
 .editing-time__item {
   height: 22px;
   font-family: "Montserrat", sans-serif;

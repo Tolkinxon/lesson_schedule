@@ -86,11 +86,12 @@
         max-width: 40px;
         height: 96px;
         overflow-y: scroll;
+        
 
-        // &::-webkit-scrollbar {
-        //     // background-color: transparent;
-        //     // width: 5px;
-        // }
+        &::-webkit-scrollbar {
+            background-color: transparent;
+            width: 5px;
+        }
     }
 
     // &__end-list {

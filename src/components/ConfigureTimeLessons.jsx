@@ -23,6 +23,8 @@ const ConfigureTimeLessons = () => {
                 setTimeLessonsList(newList)
             })
             .catch((e) => console.log(e))
+
+            document.querySelector('.editing-time__start-list-for-hour').scrollTo({top: 35})
     }, [])
 
 
@@ -47,12 +49,26 @@ const ConfigureTimeLessons = () => {
     }
 
 
-    let content = '00'
+    let prevScrollTop = 0
     const startListForHour = (e) => {
+
        
         const distanceUntillTop = e.target.scrollTop
-        content = e.target.children[Math.floor(distanceUntillTop / 37)].textContent
+        const content = e.target.children[Math.floor(distanceUntillTop / 37)].textContent
         setStartHour(content)
+
+        console.log(distanceUntillTop);
+
+
+        if(Math.floor(distanceUntillTop) === 888) {
+            e.target.scrollTop = 2
+        }
+    
+        else if(prevScrollTop > distanceUntillTop && distanceUntillTop === 0) {
+            e.target.scrollTop = 887
+        }
+
+        prevScrollTop = distanceUntillTop
     }
 
 
