@@ -915,8 +915,7 @@ h1, h2, h3, h4, h5, h6, p {
 .editing-time__wrapper {
   width: 100%;
   display: flex;
-  gap: 10px;
-  border: 2px solid blue;
+  gap: 76px;
 }
 .editing-time__wrapper > div {
   width: 103px;
