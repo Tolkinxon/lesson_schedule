@@ -913,5 +913,32 @@ h1, h2, h3, h4, h5, h6, p {
   cursor: pointer;
 }
 .editing-time__wrapper {
+  width: 100%;
   display: flex;
+  gap: 10px;
+  border: 2px solid blue;
+}
+.editing-time__start-list-wrapper {
+  display: flex;
+  gap: 30px;
+}
+.editing-time__start-list-for-hour, .editing-time__start-list-for-minute {
+  max-width: 40px;
+  height: 96px;
+  overflow-y: scroll;
+}
+.editing-time__start-list-for-hour::-webkit-scrollbar, .editing-time__start-list-for-minute::-webkit-scrollbar {
+  background-color: transparent;
+}
+.editing-time__item {
+  height: 22px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21.94px;
+  text-align: left;
+  color: rgba(30, 41, 59, 0.5);
+}
+.editing-time__item + .editing-time__item {
+  margin-top: 15px;
 }/*# sourceMappingURL=index.css.map */

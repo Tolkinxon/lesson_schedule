@@ -41,13 +41,45 @@
     }
 
     &__wrapper {
+        width: 100%;
         display: flex;
+        gap: 10px;
+        border: 2px solid blue;
+        
+        
     }
 
-    &__start-list {
+    &__start-list-wrapper {
+        display: flex;
+        gap: 30px;
     }
 
-    &__end-list {
+    &__start-list-for-hour, &__start-list-for-minute {
+        max-width: 40px;
+        height: 96px;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            background-color: transparent;
+        }
+
+    }
+
+    // &__end-list {
+    // }
+
+    &__item {
+        height: 22px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 21.94px;
+        text-align: left;
+        color: rgba(30, 41, 59, 0.5);
+    }
+
+    &__item + &__item {
+        margin-top: 15px;
     }
 }
 
