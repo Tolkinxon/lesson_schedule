@@ -5,6 +5,14 @@
     
     &__container {
         padding-top: 50px;
+        position: relative;
+    }
+
+    &__go-back {
+        transform: rotate(180deg);
+        position: absolute;
+        top: 25px;
+        cursor: pointer;
     }
 
     &__heading {

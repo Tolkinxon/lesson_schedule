@@ -1,3 +1,4 @@
+import calendarNext from './../assets/calendar-next.svg'
 import ConfigureTimeLessonsItem from './ConfigureTimeLessonsItem';
 import { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
@@ -93,6 +94,8 @@ const ConfigureTimeLessons = () => {
         <>
             <section className="configure">
                 <div className="container configure__container">
+                    <img className='configure__go-back' src={calendarNext} alt="icon for go back" onClick={() => navigate('/')}/>
+
                     <h1 className="configure__heading">
                         Sozlamalar
                     </h1>
@@ -104,8 +107,6 @@ const ConfigureTimeLessons = () => {
                     <ul className="configure__list">
                         { elements }
                     </ul>
-
-                    <button onClick={() => navigate('/')}>back</button>
                 </div>
 
                 <section className='editing-time' style={{display: isOpenEditTimeSection ? 'block':'none'}}>

@@ -138,6 +138,14 @@ const Main = () => {
         return <Schedule__item key={ idx } item={ item } idx={ idx } />
     })
 
+    const addData = () => { 
+
+        if(data.length < 7){
+            dispatch(setFindTime(data.length));
+            navigate('/add-schedule')
+        }
+    }
+
 
 
     return ( 
@@ -160,7 +168,7 @@ const Main = () => {
         <section className='calendar'>
             <div className="container calendar__container">
                  <img className='calendar__prev-svg' src={calendarNext} alt="prev day svg" onClick={() => changeCalendar(-1)}/>
-                    <ul className='calendar__list '>
+                    <ul className='calendar__list'>
                         { calendarElements }
                     </ul>
                 <img className='calendar__next-svg' src={calendarNext} alt="next day svg" 
@@ -175,7 +183,7 @@ const Main = () => {
                 <ul className='schedule__list'>
                     { scheduleElements }
                 </ul>
-                <div className="schedule__add-new-schedule" onClick={() =>{ dispatch(setFindTime(data.length)); navigate('/add-schedule')}}>
+                <div className="schedule__add-new-schedule" onClick={() => addData()}>
                         <img className="schedule__add-new-schedule-img" src={ addSchedule } alt="add new schedule icon" />
 
                         <p className="schedule__add-new-schedule-text">Jadval kiritish</p>

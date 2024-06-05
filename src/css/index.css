@@ -481,12 +481,12 @@ h1, h2, h3, h4, h5, h6, p {
   max-width: 300px;
   width: 100%;
   white-space: nowrap;
-  overflow: hidden;
+  position: relative;
 }
 .calendar__item {
-  width: 30px;
   display: inline-block;
-  transform: translateX(-45px);
+  position: relative;
+  z-index: 1;
 }
 .calendar__item + .calendar__item {
   margin-left: 15px;
@@ -509,6 +509,11 @@ h1, h2, h3, h4, h5, h6, p {
   letter-spacing: 0.3000000119px;
   text-align: center;
   color: #94A3B8;
+}
+.calendar__current-item {
+  padding: 8px;
+  border-radius: 14px;
+  background-color: #fff0f0;
 }
 .calendar__current-item h3 {
   font-family: "Inter", sans-serif;
@@ -808,6 +813,13 @@ h1, h2, h3, h4, h5, h6, p {
 }
 .configure__container {
   padding-top: 50px;
+  position: relative;
+}
+.configure__go-back {
+  transform: rotate(180deg);
+  position: absolute;
+  top: 25px;
+  cursor: pointer;
 }
 .configure__heading {
   font-family: "Montserrat", sans-serif;

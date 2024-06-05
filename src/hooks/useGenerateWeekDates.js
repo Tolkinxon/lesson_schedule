@@ -4,7 +4,7 @@ const useGenerateWeekDates = ( date ) => {
 
     let slisedDates = [], slisedDays = []
 
-    for(let i = date - 4; i <= date + 4; i++){
+    for(let i = date - 3; i <= date + 3; i++){
 
         let tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + i);

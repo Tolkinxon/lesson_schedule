@@ -16,25 +16,25 @@
         transform: rotate(180deg);
     }
 
-    &__list-wrapper {
+    // &__list-wrapper {
       
-        // border: 2px solid red;
-        // 
-    }
+    //     // border: 2px solid red;
+    //     // 
+    // }
 
     &__list {
         max-width: 300px;
         width: 100%;
         white-space: nowrap;
-        overflow: hidden;
+        position: relative;
     }
 
 
 
     &__item {
-        width: 30px;
         display: inline-block;
-        transform: translateX(-45px);
+        position: relative;
+        z-index: 1;
     }
 
     &__item + &__item {
@@ -65,10 +65,11 @@
     }
 
     &__current-item {
-        // padding: 8px;
-        // border-radius: 33%;
-        // background-color: #fff0f0;
-
+        padding: 8px;
+        border-radius: 14px;
+        background-color: #fff0f0;
+   
+      
         h3 {
             font-family: 'Inter', sans-serif;
             font-size: 20px;

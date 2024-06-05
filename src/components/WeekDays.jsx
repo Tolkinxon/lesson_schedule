@@ -18,7 +18,7 @@ let classOfCurrentDay = ''
         case 6: day = 'Sha'; break;
     }
 
-    if(idx === 4){
+    if(idx === 3){
         classOfCurrentDay = 'calendar__current-item'
         dispatch(setFindDay(day))
     }
