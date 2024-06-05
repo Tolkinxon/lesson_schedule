@@ -1,6 +1,7 @@
 import ConfigureTimeLessonsItem from './ConfigureTimeLessonsItem';
 import { useEffect, useState } from 'react';
-import { v4 } from 'uuid'
+import { v4 } from 'uuid';
+import { useHttp }  from '../hooks/useHttp';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { timeLessonFetchData } from '../redux/actions';
@@ -9,6 +10,7 @@ import { timeLessonFetchData } from '../redux/actions';
 
 const ConfigureTimeLessons = () => {
 
+    const { request } = useHttp()
     const timeLessonObj = useSelector(state => state.timeLessonObj)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -81,6 +83,9 @@ const ConfigureTimeLessons = () => {
        const endTime = document.querySelector('#endTime').textContent
 
        dispatch(timeLessonFetchData({...timeLessonObj, [`${findtId}`]: `${startTime} - ${ endTime }`}))
+
+     
+        request('http://localhost:3001/times/1', 'PUT', JSON.stringify({lessonsTime: {...timeLessonObj, [`${findtId}`]: `${startTime} - ${ endTime }`}}))
     }
 
 

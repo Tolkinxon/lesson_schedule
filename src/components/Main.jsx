@@ -43,9 +43,9 @@ const Main = () => {
 
 
     useEffect(() => {
-        request('http://localhost:3001/lessonsTime')
+        request('http://localhost:3001/times')
             .then(data => {
-                dispatch(timeLessonFetchData(data))
+                dispatch(timeLessonFetchData(data[0].lessonsTime))
             })
             .catch((e) => console.log(e))
     }, [])

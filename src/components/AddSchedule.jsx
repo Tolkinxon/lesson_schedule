@@ -2,6 +2,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
 import { dataAdding, dataEditing, setFindOddOrEven, setFindTime, setFindId } from '../redux/actions';
 import { v4 } from 'uuid'
+import { useHttp }  from '../hooks/useHttp';
+
+
 import { useNavigate } from 'react-router-dom';
 
 const AddSchedule = () => {
@@ -13,6 +16,7 @@ const AddSchedule = () => {
     const staticData = useSelector(state => state.staticData)
     const timeLessonObj = useSelector(state => state.timeLessonObj)
 
+    const { request } = useHttp()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -47,6 +51,7 @@ const AddSchedule = () => {
 
         if(isEmpty){
             newData = null
+            request(`http://localhost:3001/schedule/${id}`, 'DELETE')
         }
         dispatch(dataEditing(newData, findingIdx))
         clearInputs()
@@ -67,19 +72,16 @@ const AddSchedule = () => {
         }
     },[findOddOrEven])
 
-    console.log(findOddOrEven);
-
-
 
 
     //creating new item function
     const generateData = () => {
 
         let newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLessonObj[`${findTime + 1}`]}
-        if(isEmpty){
-            newData = null
+        if(!isEmpty){
+            dispatch(dataAdding(newData))
+            
         }
-        dispatch(dataAdding(newData))
         clearInputs()
     }
 
