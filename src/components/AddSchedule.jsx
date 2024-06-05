@@ -53,6 +53,7 @@ const AddSchedule = () => {
             newData = null
             request(`http://localhost:3001/schedule/${id}`, 'DELETE')
         }
+        request(`http://localhost:3001/schedule/${id}`, 'PUT',JSON.stringify(newData))
         dispatch(dataEditing(newData, findingIdx))
         clearInputs()
     }
@@ -80,7 +81,7 @@ const AddSchedule = () => {
         let newData = { id: v4(), subjectName, subjectType, teacher, numberRoom, oddOrEven, timeLesson: timeLessonObj[`${findTime + 1}`]}
         if(!isEmpty){
             dispatch(dataAdding(newData))
-            
+            request(`http://localhost:3001/schedule`, 'POST', JSON.stringify(newData))
         }
         clearInputs()
     }

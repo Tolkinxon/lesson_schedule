@@ -1,22 +1,22 @@
 {
   "schedule": [
     {
-      "id": "232e5983-3214-4c0e-beb8-487351ff0e51",
-      "subjectName": "dd",
-      "subjectType": "dd",
-      "teacher": "",
-      "numberRoom": "",
-      "oddOrEven": "even",
-      "timeLesson": "14:30 - 15:50"
-    },
-    {
       "id": "005b1e38-cc29-4275-9cf5-22a07be09304",
       "subjectName": "dd",
       "subjectType": "dd",
       "teacher": "",
       "numberRoom": "",
-      "oddOrEven": "",
+      "oddOrEven": "odd",
       "timeLesson": "12:30 - 13:50"
+    },
+    {
+      "id": "8793faaf-0171-4e4c-8410-1415e030d381",
+      "subjectName": "ffff",
+      "subjectType": "ffff",
+      "teacher": "ffff",
+      "numberRoom": "",
+      "oddOrEven": "",
+      "timeLesson": "17:00 - 00:00"
     }
   ],
   "times": [
