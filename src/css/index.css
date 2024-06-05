@@ -547,7 +547,7 @@ h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 15px;
 }
 .schedule__item-time {
-  max-width: 95px;
+  max-width: 100px;
   width: 100%;
   display: inline-block;
   font-family: "Montserrat", sans-serif;
